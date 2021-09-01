@@ -1,36 +1,33 @@
-all: kyria lily58
+USER = pket
+KEYBOARDS = lily58 kyria 
 
-kb-lily58:
+PATH_lily58 = lily58
+PATH_kyria = splitkb/kyria
+
+all: $(KEYBOARDS)
+
+.PHONY: $(KEYBOARDS)
+$(KEYBOARDS):
+	# init submodule
 	git submodule update --init --recursive
 
-	rm -rf qmk_firmware/keyboards/lily58/keymaps/pket
-	rm -rf qmk_firmware/users/pket
+	# cleanup old symlinks
+	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$(PATH_$@)/keymaps/$(USER); done
+	rm -rf qmk_firmware/users/$(USER)
 
-	ln -s $(shell pwd)/lily58 qmk_firmware/keyboards/lily58/keymaps/pket
-	ln -s $(shell pwd)/user qmk_firmware/users/pket
+	# add new symlinks
+	ln -s $(shell pwd)/user qmk_firmware/users/$(USER)
+	ln -s $(shell pwd)/$@ qmk_firmware/keyboards/$(PATH_$@)/keymaps/$(USER)
 
-	cd qmk_firmware; qmk lint -km pket -kb lily58 --strict
+	# run lint check
+	cd qmk_firmware; qmk lint -km $(USER) -kb $(PATH_$@) --strict
 
-	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware lily58:pket
+	# run build
+	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware $(PATH_$@):$(USER)
 
-	rm -rf qmk_firmware/keyboards/lily58/keymaps/pket
-	rm -rf qmk_firmware/users/pket
-
-kb-kyria:
-	git submodule update --init --recursive
-
-	rm -rf qmk_firmware/keyboards/splitkb/kyria/keymaps/pket
-	rm -rf qmk_firmware/users/pket
-
-	ln -s $(shell pwd)/kyria qmk_firmware/keyboards/splitkb/kyria/keymaps/pket
-	ln -s $(shell pwd)/user qmk_firmware/users/pket
-
-	cd qmk_firmware; qmk lint -km pket -kb splitkb/kyria --strict
-
-	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware splitkb/kyria:pket
-
-	rm -rf qmk_firmware/keyboards/splitkb/kyria/keymaps/pket
-	rm -rf qmk_firmware/users/pket
+	# cleanup symlinks
+	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$(PATH_$@)/keymaps/$(USER); done
+	rm -rf qmk_firmware/users/$(USER)
 
 clean:
 	rm -rf obj_*
@@ -38,5 +35,3 @@ clean:
 	rm -f *.map
 	rm -f *.hex
 
-deep-clean: clean
-	cd qmk_firmware; make clean
