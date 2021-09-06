@@ -2,3 +2,4 @@ obj_*
 *.hex
 *.elf
 *.map
+build/
