@@ -5,7 +5,7 @@
 // R3
 COMB(WE_LCBR,            KC_LCBR,              KC_W, KC_E)
 COMB(ER_RCBR,            KC_RCBR,              KC_E, KC_R)
-SUBS(WR_CBR_PAIR,        "{}",                 KC_W, KC_R)
+SUBS(WR_CBR_PAIR,        "{ }",                KC_W, KC_R)
 SUBS(WER_CBR_PAIR_IN,    "{}"SS_TAP(X_LEFT),   KC_W, KC_E, KC_R)
 COMB(RT_PIPE,            KC_PIPE,              KC_R, KC_T)
 
@@ -28,20 +28,25 @@ COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
 
 // R3
 COMB(YU_AMPR,            KC_AMPR,              KC_Y, KC_U)
-COMB(UI_CAPS_WORD,       CAPS,                 KC_U, KC_I)
-COMB(IO_SNAKE_WORD,      SNAKE,                KC_I, KC_O)
+COMB(UI_EQL,             KC_EQL,               KC_U, KC_I)
+SUBS(UO_QUES_DOT,        "?.",                 KC_U, KC_I)
+SUBS(IO_NOT_EQL,         "!=",                 KC_I, KC_O)
 COMB(UIO_SNAKE_SCREAM,   SNK_SCM,              KC_U, KC_I, KC_O)
 
 // R2
-COMB(HJ_EQL,             KC_EQL,               KC_H, KC_J)
+SUBS(HJ_ARROW,           "->",                 KC_H, KC_J)
 COMB(JK_ESC,             KC_ESC,               KC_J, KC_K)
 COMB(KL_TAB,             KC_TAB,               KC_K, KC_L)
-COMB(LSCLN_BSPC,         KC_BSPC,              KC_L, KC_SCLN)
+
+// R1
+COMB(MCOM_DLR,           KC_DLR,               KC_M, KC_COMM)
 
 // ==========
 // SWE
 // ==========
 
+// TODO I need to come up with something better than this cause
+//      this sucks...
 COMB(SWE_AO,             SE_AO,                KC_A, KC_O)
 COMB(SWE_AE,             SE_AE,                KC_A, KC_E)
 COMB(SWE_OE,             SE_OE,                KC_O, KC_E)

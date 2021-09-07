@@ -19,10 +19,9 @@
 #include "pket.h"
 #include "g/keymap_combo.h"
 
-#define LOW_SPC LT(_LOWER, KC_SPC)
 #define LOW_ENT LT(_LOWER, KC_ENT)
 #define RAI_ESC LT(_RAISE, KC_ESC)
-#define RAI_TAB LT(_RAISE, KC_TAB)
+#define RAI_REP LT(_RAISE, REPEAT)
 #define CTL_BSP LCTL_T(KC_BSPC)
 
 bool sw_win_active = false;
@@ -33,6 +32,8 @@ oneshot_state os_cmd_state = os_up_unqueued;
 
 static uint16_t non_combo_input_timer = 0;
 
+// TODO investigate if there are things in config.h that can be disabled
+//      to regain some of that lost memory...
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
@@ -51,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
       CTL_BSP, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LSFT, LOWER,   RAISE,   KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-                                 KC_LGUI, _______, SYSTEM,  KC_SPC,  RAI_ESC, LOW_ENT, OS_RAIS, RAI_TAB, _______, KC_LALT
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    CAPS,    LOWER,   SNAKE,   SNK_SCM, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+                                 KC_LGUI, _______, SYSTEM,  KC_SPC,  RAI_ESC, LOW_ENT, OS_RAIS, RAI_REP, _______, KC_LALT
     ),
 /*
  * Lower Layer: Symbols
@@ -232,7 +233,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case XV_CUT:
         case ZX_UNDO:
 
-        case LSCLN_BSPC:
+        case UI_EQL:
+        case IO_NOT_EQL:
 
         case XCV_PASTE_SFT:
         case WER_CBR_PAIR_IN:
@@ -242,12 +244,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             break;
 
         case UIO_SNAKE_SCREAM:
-        case UI_CAPS_WORD:
-        case IO_SNAKE_WORD:
             id = '3';
             term = 25;
             break;
 
+        case HJ_ARROW:
+        case MCOM_DLR:
         case KL_TAB:
         case JK_ESC:
         default:
@@ -276,9 +278,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         append_keylog(keycode);
     }
-
-    // TODO enable xcase
-    // TODO figure out the layer buttons
 
     if (record->event.pressed && keycode != REPEAT) {
         register_key_to_repeat(keycode);
@@ -370,7 +369,7 @@ static void render_status(void) {
     render_qmk_logo();
 
     render_empty_line();
-    
+
     oled_write_P(PSTR(" Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
