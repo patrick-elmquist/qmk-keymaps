@@ -28,8 +28,7 @@ COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
 
 // R3
 COMB(YU_AMPR,            KC_AMPR,              KC_Y, KC_U)
-COMB(UI_EQL,             KC_EQL,               KC_U, KC_I)
-SUBS(UO_QUES_DOT,        "?.",                 KC_U, KC_I)
+SUBS(UI_QUES_DOT,        "?.",                 KC_U, KC_I)
 SUBS(IO_NOT_EQL,         "!=",                 KC_I, KC_O)
 COMB(UIO_SNAKE_SCREAM,   SNK_SCM,              KC_U, KC_I, KC_O)
 
@@ -37,7 +36,7 @@ COMB(UIO_SNAKE_SCREAM,   SNK_SCM,              KC_U, KC_I, KC_O)
 SUBS(HJ_ARROW,           "->",                 KC_H, KC_J)
 COMB(JK_ESC,             KC_ESC,               KC_J, KC_K)
 COMB(KL_TAB,             KC_TAB,               KC_K, KC_L)
-SUBS(JL_QUES_DOT,        "?.",                 KC_J, KC_L)
+COMB(JL_EQL,             KC_EQL,               KC_J, KC_L)
 
 // R1
 COMB(MCOM_DLR,           KC_DLR,               KC_M, KC_COMM)

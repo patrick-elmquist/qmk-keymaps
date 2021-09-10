@@ -34,6 +34,11 @@ static uint16_t non_combo_input_timer = 0;
 
 // TODO investigate if there are things in config.h that can be disabled
 //      to regain some of that lost memory...
+// TODO investigate if it's a good idea to store previous combo and if
+//      backspace is pressed immediately after, revert the combo. Like
+//      pressing W+R would show { } and a backspace would be repeated 3 times
+// TODO investigate long press of combos, like long press J+L for = would
+//      result in ==, and longpressing M+, for $ could result in ${}<left>
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
@@ -91,11 +96,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_RAISE] = LAYOUT(
       _______, KC_1, 	KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+      _______, OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, QUOTES,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-/*
+/**
  * System Layer: Swapper, application shortcuts
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -222,7 +227,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case XV_CUT:
         case ZX_UNDO:
 
-        case UI_EQL:
+        case UI_QUES_DOT:
         case IO_NOT_EQL:
 
         case XCV_PASTE_SFT:
