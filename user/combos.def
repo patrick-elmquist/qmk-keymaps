@@ -6,14 +6,14 @@
 COMB(WE_LCBR,            KC_LCBR,              KC_W, KC_E)
 COMB(ER_RCBR,            KC_RCBR,              KC_E, KC_R)
 SUBS(WR_CBR_PAIR,        "{ }",                KC_W, KC_R)
-SUBS(WER_CBR_PAIR_IN,    "{}"SS_TAP(X_LEFT),   KC_W, KC_E, KC_R)
+COMB(WER_CBR_PAIR_IN,    CURLYS,               KC_W, KC_E, KC_R)
 COMB(RT_PIPE,            KC_PIPE,              KC_R, KC_T)
 
 // R2
 COMB(SD_LPRN,            KC_LPRN,              KC_S, KC_D)
 COMB(DF_RPRN,            KC_RPRN,              KC_D, KC_F)
 SUBS(SF_PRN_PAIR,        "()",                 KC_S, KC_F)
-SUBS(SDF_PRN_PAIR_IN,    "()"SS_TAP(X_LEFT),   KC_S, KC_D, KC_F)
+COMB(SDF_PRN_PAIR_IN,    PARENS,               KC_S, KC_D, KC_F)
 
 // R1
 COMB(XC_COPY,            LGUI(KC_C),           KC_X, KC_C)
@@ -39,7 +39,9 @@ COMB(KL_TAB,             KC_TAB,               KC_K, KC_L)
 COMB(JL_EQL,             KC_EQL,               KC_J, KC_L)
 
 // R1
+SUBS(NM_LOG,             "!\"\""SS_TAP(X_LEFT),KC_N, KC_M)
 COMB(MCOM_DLR,           KC_DLR,               KC_M, KC_COMM)
+SUBS(LTGT_ARROW,         "->",                 KC_COMM, KC_DOT)
 
 // ==========
 // SWE

@@ -20,8 +20,10 @@
 #include "g/keymap_combo.h"
 
 #define LOW_ENT LT(_LOWER, KC_ENT)
+#define LOW_SPC LT(_LOWER, KC_SPC)
 #define RAI_ESC LT(_RAISE, KC_ESC)
 #define RAI_REP LT(_RAISE, REPEAT)
+#define RAI_ADP LT(_RAISE, ADAPT)
 #define CTL_BSP LCTL_T(KC_BSPC)
 
 bool sw_win_active = false;
@@ -34,121 +36,62 @@ static uint16_t non_combo_input_timer = 0;
 
 // TODO investigate if there are things in config.h that can be disabled
 //      to regain some of that lost memory...
-// TODO investigate if it's a good idea to store previous combo and if
-//      backspace is pressed immediately after, revert the combo. Like
-//      pressing W+R would show { } and a backspace would be repeated 3 times
 // TODO investigate long press of combos, like long press J+L for = would
 //      result in ==, and longpressing M+, for $ could result in ${}<left>
+// ISSUES
+// - Callum mods don't work since the OS_RAISE key will reset the keys
+//   when letting go. Need to add it as an exception.
+// - Noticing some strain in using combos a lot, might want to move
+//   keys I use a lot to a layer instead.
+// - The combos for swe chars are not working out, I need something
+//   better for that.
+// - Starting to consider moving BSPC back to a thumb key, also to
+//   reduce strain in wrist/hand.
+// - Might want to remove the macros for single {()} but keep the
+//   ones for pairs. By doing so, try shrinking the combos to be
+//   next to each other.
+// - The combo for CMD-Z sucks, remove it and add a key in SYSTEM
+// - Add a CMD-W next to QUIT in SYSTEM
+// - Use combos more for things that trigger multiple chars instead
+//   of single, if pressing two fingers for one symbol, might as
+//   well keep it on a layer instead.
+// - Move QUOTES to a combo or at least away from the pinky.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/*
- * Base Layer: QWERTY
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |RAIS/ESC|   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  | \   |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |Ctrl/BS |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |LShift|LShift|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | GUI  | Del  | Sys  | Space| Esc  |  | Enter| Space| Tab  |      | AltGr|
- *                        |      |      |      | Lower| Raise|  | Lower| Raise| Raise|      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+
     [_QWERTY] = LAYOUT(
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
       CTL_BSP, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    CAPS,    LOWER,   SNAKE,   SNK_SCM, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-                                 KC_LGUI, RAISE,   SYSTEM,  KC_SPC,  RAI_ESC, LOW_ENT, OS_RAIS, RAISE,   _______, KC_LALT
+                                 KC_LGUI, RAISE,   SYSTEM,  LOW_SPC, ADAPT,   LOW_ENT, OS_RAIS, RAI_ADP, ADAPT,   KC_LALT
     ),
-/*
- * Lower Layer: Symbols
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  !   |  @   |  {   |  }   |  |   |                              |      |      |      |      |      |  | \   |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  #   |  $   |  (   |  )   |  `   |                              |   +  |  -   |  /   |  *   | BSPC |  ' "   |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  %   |  ^   |  [   |  ]   |  ~   |      |      |  |      |      |   &  |  =   |  ,   |  .   |  / ? | - _    |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |  ;   |  =   |  |  =   |  ;   |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+
     [_LOWER] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                                     _______, _______, _______, _______, _______, KC_BSLS,
       _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                                      KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, _______, KC_QUOT,
       _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______, _______, _______, _______, KC_AMPR, KC_EQL,  KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-/*
- * Raise Layer: Number keys, media, navigation
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      | Prev | Play | Next | VolUp|                              | Left | Down | Up   | Right|      |        |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      | Mute | VolDn|      |      |  |      |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+
     [_RAISE] = LAYOUT(
       _______, KC_1, 	KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
       _______, OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, QUOTES,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-/**
- * System Layer: Swapper, application shortcuts
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      |WINSWP|      |iTerm |                              |      |      |      |      |      |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |      |      |Alfred|                              |      |      |      |      |      |        |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+
     [_SYSTEM] = LAYOUT(
-      _______, _______, _______, SW_WIN,  _______, ITERM,                                       _______, _______, _______, _______, _______, _______,
-      _______, KC_9,    KC_5,    KC_1,    KC_3,    ALFRED,                                      _______, KC_2,    KC_0,    KC_4,    KC_8,    _______,
+      _______, QUIT,    _______, SW_WIN,  _______, ITERM,                                       _______, _______, _______, _______, _______, _______,
+      _______, KC_9,    KC_5,    KC_3,    KC_1,    ALFRED,                                      _______, KC_0,    KC_2,    KC_4,    KC_8,    _______,
       _______, _______, _______, _______, KC_7,    _______, _______, _______, _______, _______, _______, KC_6,    _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-/*
- * Adjust Layer: Function keys, RGB
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        | F1   |  F2  | F3   | F4   | F5   |                              | F6   | F7   |  F8  | F9   | F10  |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |                              |      |      |      | F11  | F12  |        |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+
     [_ADJUST] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
       _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-// /*
-//  * Layer template
-//  */
-//     [_LAYERINDEX] = LAYOUT(
-//       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-//       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-//       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-//                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-//     ),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -243,6 +186,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             break;
 
         case HJ_ARROW:
+        case LTGT_ARROW:
         case MCOM_DLR:
         case KL_TAB:
         case JK_ESC:
@@ -273,19 +217,78 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         append_keylog(keycode);
     }
 
+    uint16_t last_keycode = last_key();
     if (record->event.pressed && keycode != REPEAT) {
         register_key_to_repeat(keycode);
     }
 
     static uint16_t os_sft_raise_timer;
+    static uint16_t last_combo;
     switch (keycode) {
         case QUOTES:
             if (record->event.pressed) {
+                last_combo = keycode;
                 SEND_STRING("\"\""SS_TAP(X_LEFT));
             }
             return false;
         case REPEAT:
             update_repeat_key(record);
+            return false;
+        case CURLYS:
+            if (record->event.pressed) {
+                last_combo = keycode;
+                SEND_STRING("{ }"SS_TAP(X_LEFT));
+            }
+            return false;
+        case PARENS:
+            if (record->event.pressed) {
+                last_combo = keycode;
+                SEND_STRING("()"SS_TAP(X_LEFT));
+            }
+            return false;
+        case CTL_BSP:
+            if (record->event.pressed) {
+                switch (last_keycode) {
+                    case PARENS:
+                    case CURLYS:
+                    case QUOTES:
+                        tap_code16(KC_RIGHT);
+                        tap_code16(KC_BSPC);
+                        tap_code16(KC_BSPC);
+                        return false;
+                }
+            }
+            return true;
+        case ADAPT:
+            if (record->event.pressed) {
+                switch (last_keycode) {
+                    case QUOTES:
+                        SEND_STRING("IT WORKS");
+                        return false;
+                    case CURLYS:
+                        SEND_STRING(" -> "SS_TAP(X_ENTER));
+                        return false;
+                    case PARENS:
+                        SEND_STRING("\"\""SS_TAP(X_LEFT));
+                        return false;
+                }
+                switch (last_combo) {
+                    case QUOTES:
+                        last_combo = KC_NO;
+                        SEND_STRING("IT WORKS 2");
+                        return false;
+                    case CURLYS:
+                        last_combo = KC_NO;
+                        SEND_STRING(" -> ");
+                        return false;
+                    case PARENS:
+                        last_combo = KC_NO;
+                        tap_code16(KC_END);
+                        tap_code16(KC_SPACE);
+                        return false;
+                }
+
+            }
             return false;
         case SE_AO:
             if (record->event.pressed) {
@@ -336,7 +339,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(_RAISE);
             } else {
                 layer_off(_RAISE);
-                if (timer_elapsed(os_sft_raise_timer) < TAPPING_TERM) {
+                if (timer_elapsed(os_sft_raise_timer) < TAPPING_TERM + 50) {
                     set_oneshot_mods(MOD_LSFT);
                 }
             }

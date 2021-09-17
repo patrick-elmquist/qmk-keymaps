@@ -4,6 +4,7 @@
 #define RAISE MO(_RAISE)
 #define SYSTEM MO(_SYSTEM)
 
+#define QUIT RGUI(KC_Q)
 #define ALFRED RGUI(KC_SPC)
 #define ITERM RGUI(KC_ESC)
 
@@ -16,7 +17,10 @@ enum custom_keycodes {
     OS_RAIS,
     SW_WIN,
     REPEAT,
+    ADAPT,
     QUOTES,
+    PARENS,
+    CURLYS,
 
     CAPS,
     CAMEL,
