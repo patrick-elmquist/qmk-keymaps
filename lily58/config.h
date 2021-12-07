@@ -22,8 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MASTER_LEFT
 
-#define SPLIT_MODS_ENABLE
-
 #ifdef OLED_FONT_H
     #undef OLED_FONT_H
 #endif

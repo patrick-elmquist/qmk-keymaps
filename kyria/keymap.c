@@ -15,24 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include QMK_KEYBOARD_H
 #include "pket.h"
-#include "g/keymap_combo.h"
-
-#define LOW_ENT LT(_LOWER, KC_ENT)
-#define LOW_SPC LT(_LOWER, KC_SPC)
-#define RAI_ESC LT(_RAISE, KC_ESC)
-#define RAI_REP LT(_RAISE, REPEAT)
-#define RAI_ADP LT(_RAISE, ADAPT)
-#define CTL_BSP LCTL_T(KC_BSPC)
-
-bool sw_win_active = false;
-oneshot_state os_shft_state = os_up_unqueued;
-oneshot_state os_ctrl_state = os_up_unqueued;
-oneshot_state os_alt_state = os_up_unqueued;
-oneshot_state os_cmd_state = os_up_unqueued;
-
-static uint16_t non_combo_input_timer = 0;
 
 // TODO investigate if there are things in config.h that can be disabled
 //      to regain some of that lost memory...
@@ -56,302 +39,47 @@ static uint16_t non_combo_input_timer = 0;
 //   of single, if pressing two fingers for one symbol, might as
 //   well keep it on a layer instead.
 // - Move QUOTES to a combo or at least away from the pinky.
+// - Add keys for screenshots, especially the one to clipboard
+// - Add keys for TickTick shortcuts
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [_QWERTY] = LAYOUT(
-      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
-      CTL_BSP, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    CAPS,    LOWER,   SNAKE,   SNK_SCM, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-                                 KC_LGUI, RAISE,   SYSTEM,  LOW_SPC, ADAPT,   LOW_ENT, OS_RAIS, RAI_ADP, ADAPT,   KC_LALT
+    [_QWERTY] = LAYOUT_wrapper(
+      _____________________QWERTY_L1______________________,                                     _____________________QWERTY_R1______________________,
+      _____________________QWERTY_L2______________________,                                     _____________________QWERTY_R2______________________,
+      _____________________QWERTY_L3______________________, CAPS,    LOWER,   SNAKE,   SNK_SCM, _____________________QWERTY_R3______________________,
+                                 KC_LGUI, _________MOD_LEFT________, ADAPT,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
     ),
 
-    [_LOWER] = LAYOUT(
-      _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                                     _______, _______, _______, _______, _______, KC_BSLS,
-      _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                                      KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, _______, KC_QUOT,
-      _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______, _______, _______, _______, KC_AMPR, KC_EQL,  KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+    [_LOWER] = LAYOUT_wrapper(
+      _____________________LOWER__L1______________________,                                     _____________________LOWER__R1______________________,
+      _____________________LOWER__L2______________________,                                     _____________________LOWER__R2______________________,
+      _____________________LOWER__L3______________________, _______, _______, _______, _______, _____________________LOWER__R3______________________,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
-    [_RAISE] = LAYOUT(
-      _______, KC_1, 	KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, QUOTES,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    [_RAISE] = LAYOUT_wrapper(
+      _____________________RAISE__L1______________________,                                     _____________________RAISE__R1______________________,
+      _____________________RAISE__L2______________________,                                     _____________________RAISE__R2______________________,
+      _____________________RAISE__L3______________________, _______, _______, _______, _______, _____________________RAISE__R3______________________,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
-    [_SYSTEM] = LAYOUT(
-      _______, QUIT,    _______, SW_WIN,  _______, ITERM,                                       _______, _______, _______, _______, _______, _______,
-      _______, KC_9,    KC_5,    KC_3,    KC_1,    ALFRED,                                      _______, KC_0,    KC_2,    KC_4,    KC_8,    _______,
-      _______, _______, _______, _______, KC_7,    _______, _______, _______, _______, _______, _______, KC_6,    _______, _______, _______, _______,
+    [_SYSTEM] = LAYOUT_wrapper(
+      _____________________SYSTEM_L1______________________,                                     _____________________SYSTEM_R1______________________,
+      _____________________SYSTEM_L2______________________,                                     _____________________SYSTEM_R2______________________,
+      _____________________SYSTEM_L3______________________, _______, _______, _______, _______, _____________________SYSTEM_R3______________________,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
-    [_ADJUST] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
-      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    [_ADJUST] = LAYOUT_wrapper(
+      _____________________ADJUST_L1______________________,                                     _____________________ADJUST_R1______________________,
+      _____________________ADJUST_L2______________________,                                     _____________________ADJUST_R2______________________,
+      _____________________ADJUST_L3______________________, _______, _______, _______, _______, _____________________ADJUST_R3______________________,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
-// Oneshot functions
-bool is_oneshot_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-        case LOWER:
-        case RAISE:
-        case SYSTEM:
-            return true;
-        default:
-            return false;
-    }
-}
-
-bool is_oneshot_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-        case LOWER:
-        case RAISE:
-        case SYSTEM:
-        case KC_LSFT:
-        case OS_LSFT:
-        case OS_LCTL:
-        case OS_LALT:
-        case OS_LGUI:
-            return true;
-        default:
-            return false;
-    }
-}
-
-// Xcase functions
-bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
-    switch (keycode) {
-        // Keycodes to ignore (don't disable caps word)
-        case KC_A ... KC_Z:
-        case KC_1 ... KC_0:
-        case KC_MINS:
-        case KC_UNDS:
-        case KC_BSPC:
-        case CAPS:
-        case SNK_SCM:
-        case SNAKE:
-            // If mod chording disable the mods
-            if (record->event.pressed && (get_mods() != 0)) {
-                return true;
-            }
-            break;
-        default:
-            if (record->event.pressed) {
-                return true;
-            }
-            break;
-    }
-    return false;
-}
-
-// Combo functions
-uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    char id;
-    uint16_t term;
-    switch (index) {
-        case WE_LCBR:
-        case ER_RCBR:
-        case WR_CBR_PAIR:
-
-        case SD_LPRN:
-        case DF_RPRN:
-        case SF_PRN_PAIR:
-
-        case XC_COPY:
-        case CV_PASTE:
-        case XV_CUT:
-        case ZX_UNDO:
-
-        case UI_QUES_DOT:
-        case IO_NOT_EQL:
-
-        case XCV_PASTE_SFT:
-        case WER_CBR_PAIR_IN:
-        case SDF_PRN_PAIR_IN:
-            id = timer_elapsed(non_combo_input_timer) > 300 ? '1' : '2';
-            term = timer_elapsed(non_combo_input_timer) > 300 ? 30 : 5;
-            break;
-
-        case UIO_SNAKE_SCREAM:
-            id = '3';
-            term = 25;
-            break;
-
-        case HJ_ARROW:
-        case LTGT_ARROW:
-        case MCOM_DLR:
-        case KL_TAB:
-        case JK_ESC:
-        default:
-            id = '4';
-            term = 35;
-            break;
-    }
-    update_combo_status(term, id);
-    return term;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
-
-    update_oneshot(&os_shft_state, KC_LSFT, OS_LSFT, keycode, record);
-    update_oneshot(&os_ctrl_state, KC_LCTL, OS_LCTL, keycode, record);
-    update_oneshot(&os_alt_state, KC_LALT, OS_LALT, keycode, record);
-    update_oneshot(&os_cmd_state, KC_LGUI, OS_LGUI, keycode, record);
-
-    if (!process_case_modes(keycode, record)) {
-        return false;
-    }
-
-    non_combo_input_timer = timer_read();
-
-    if (record->event.pressed) {
-        append_keylog(keycode);
-    }
-
-    uint16_t last_keycode = last_key();
-    if (record->event.pressed && keycode != REPEAT) {
-        register_key_to_repeat(keycode);
-    }
-
-    static uint16_t os_sft_raise_timer;
-    static uint16_t last_combo;
-    switch (keycode) {
-        case QUOTES:
-            if (record->event.pressed) {
-                last_combo = keycode;
-                SEND_STRING("\"\""SS_TAP(X_LEFT));
-            }
-            return false;
-        case REPEAT:
-            update_repeat_key(record);
-            return false;
-        case CURLYS:
-            if (record->event.pressed) {
-                last_combo = keycode;
-                SEND_STRING("{ }"SS_TAP(X_LEFT));
-            }
-            return false;
-        case PARENS:
-            if (record->event.pressed) {
-                last_combo = keycode;
-                SEND_STRING("()"SS_TAP(X_LEFT));
-            }
-            return false;
-        case CTL_BSP:
-            if (record->event.pressed) {
-                switch (last_keycode) {
-                    case PARENS:
-                    case CURLYS:
-                    case QUOTES:
-                        tap_code16(KC_RIGHT);
-                        tap_code16(KC_BSPC);
-                        tap_code16(KC_BSPC);
-                        return false;
-                }
-            }
-            return true;
-        case ADAPT:
-            if (record->event.pressed) {
-                switch (last_keycode) {
-                    case QUOTES:
-                        SEND_STRING("IT WORKS");
-                        return false;
-                    case CURLYS:
-                        SEND_STRING(" -> "SS_TAP(X_ENTER));
-                        return false;
-                    case PARENS:
-                        SEND_STRING("\"\""SS_TAP(X_LEFT));
-                        return false;
-                }
-                switch (last_combo) {
-                    case QUOTES:
-                        last_combo = KC_NO;
-                        SEND_STRING("IT WORKS 2");
-                        return false;
-                    case CURLYS:
-                        last_combo = KC_NO;
-                        SEND_STRING(" -> ");
-                        return false;
-                    case PARENS:
-                        last_combo = KC_NO;
-                        tap_code16(KC_END);
-                        tap_code16(KC_SPACE);
-                        return false;
-                }
-
-            }
-            return false;
-        case SE_AO:
-            if (record->event.pressed) {
-                tap_code16(A(KC_A));
-            }
-            return false;
-        case SE_AE:
-        case SE_OE:
-            if (record->event.pressed) {
-                uint8_t mod_state = get_mods();
-                if (mod_state & MOD_MASK_SHIFT) {
-                    del_mods(MOD_MASK_SHIFT);
-                }
-                tap_code16(A(KC_U));
-                set_mods(mod_state);
-                tap_code16(keycode == SE_AE ? KC_A : KC_O);
-            }
-            return false;
-        case CAPS:
-            if (record->event.pressed) {
-                toggle_caps_word();
-            }
-            return false;
-        case SNAKE:
-        case CAMEL:
-            if (record->event.pressed) {
-                if (get_xcase_delimiter() != KC_NO) {
-                    disable_xcase();
-                } else {
-                    enable_xcase_with(keycode == SNAKE ? KC_UNDS : OSM(MOD_LSFT));
-                }
-            }
-            return false;
-        case SNK_SCM:
-            if (record->event.pressed) {
-                if (get_xcase_delimiter() != KC_NO) {
-                    disable_xcase();
-                    disable_caps_word();
-                } else {
-                    enable_caps_word();
-                    enable_xcase_with(KC_UNDS);
-                }
-            }
-            return false;
-        case OS_RAIS:
-            if (record->event.pressed) {
-                os_sft_raise_timer = timer_read();
-                layer_on(_RAISE);
-            } else {
-                layer_off(_RAISE);
-                if (timer_elapsed(os_sft_raise_timer) < TAPPING_TERM + 50) {
-                    set_oneshot_mods(MOD_LSFT);
-                }
-            }
-            return false;
-    }
-    return true;
-}
-
 #ifdef OLED_ENABLE
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_180;
-}
 
 static void render_qmk_logo(void) {
   static const char PROGMEM qmk_logo[] = {
@@ -399,8 +127,9 @@ void oled_task_user(void) {
     }
 }
 
-void suspend_power_down_user(void) {
-    oled_off();
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_180;
 }
+
 #endif
 
