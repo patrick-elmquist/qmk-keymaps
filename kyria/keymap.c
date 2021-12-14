@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _____________________QWERTY_L1______________________,                                     _____________________QWERTY_R1______________________,
       _____________________QWERTY_L2______________________,                                     _____________________QWERTY_R2______________________,
       _____________________QWERTY_L3______________________, CAPS,    LOWER,   SNAKE,   SNK_SCM, _____________________QWERTY_R3______________________,
-                                 KC_LGUI, _________MOD_LEFT________, ADAPT,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
+                                 KC_LGUI, _________MOD_LEFT________, RAISE,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
     ),
 
     [_LOWER] = LAYOUT_wrapper(

@@ -126,13 +126,17 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ALT_S:
+        case ALT_L:
             return TAPPING_TERM + 100;
         case LOW_SPC:
             return TAPPING_TERM + 100;
         case CTL_A:
+        case CTL_SCLN:
             return TAPPING_TERM + 75;
         case GUI_D:
+        case GUI_K:
         case SFT_F:
+        case SFT_J:
         default:
             return TAPPING_TERM;
     }
@@ -144,6 +148,10 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case ALT_S:
         case GUI_D:
         case SFT_F:
+        case SFT_J:
+        case GUI_K:
+        case ALT_L:
+        case CTL_SCLN:
             return true;
         default:
             return false;
@@ -156,6 +164,10 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
         case ALT_S:
         case GUI_D:
         case SFT_F:
+        case SFT_J:
+        case GUI_K:
+        case ALT_L:
+        case CTL_SCLN:
             // Do not force the mod-tap key press to be handled as a modifier
             // if any other key was pressed while the mod-tap key is held down.
             return true;
@@ -184,84 +196,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         append_keylog(keycode);
     }
 
-    uint16_t last_keycode = last_key();
-    if (record->event.pressed && keycode != REPEAT) {
-        register_key_to_repeat(keycode);
-    }
-
-    static uint16_t os_sft_raise_timer;
-    static uint16_t last_combo;
     switch (keycode) {
         case QUOTES:
             if (record->event.pressed) {
-                last_combo = keycode;
                 SEND_STRING("\"\""SS_TAP(X_LEFT));
             }
             return false;
-        case REPEAT:
-            update_repeat_key(record);
-            return false;
         case CURLYS:
             if (record->event.pressed) {
-                last_combo = keycode;
                 SEND_STRING("{}"SS_TAP(X_LEFT));
             }
             return false;
         case BRCKETS:
             if (record->event.pressed) {
-                last_combo = keycode;
                 SEND_STRING("[]"SS_TAP(X_LEFT));
             }
             return false;
         case PARENS:
             if (record->event.pressed) {
-                last_combo = keycode;
                 SEND_STRING("()"SS_TAP(X_LEFT));
-            }
-            return false;
-        case CTL_BSP:
-            if (record->event.pressed) {
-                switch (last_keycode) {
-                    case CURLYS:
-                        tap_code16(KC_END);
-                        tap_code16(KC_BSPC);
-                        tap_code16(KC_BSPC);
-                        return false;
-                    case PARENS:
-                    case QUOTES:
-                        tap_code16(KC_END);
-                        tap_code16(KC_BSPC);
-                        tap_code16(KC_BSPC);
-                        return false;
-                }
-            }
-            return true;
-        case ADAPT:
-            if (record->event.pressed) {
-                switch (last_keycode) {
-                    case CURLYS:
-                        SEND_STRING("->"SS_TAP(X_ENTER));
-                        return false;
-                    case PARENS:
-                        SEND_STRING("\"\""SS_TAP(X_LEFT));
-                        return false;
-                }
-                switch (last_combo) {
-                    case QUOTES:
-                        last_combo = KC_NO;
-                        SEND_STRING(":$");
-                        return false;
-                    case CURLYS:
-                        last_combo = KC_NO;
-                        SEND_STRING("-> ");
-                        return false;
-                    case PARENS:
-                        last_combo = KC_NO;
-                        tap_code16(KC_END);
-                        tap_code16(KC_SPACE);
-                        return false;
-                }
-
             }
             return false;
         case SE_AO:
@@ -304,17 +257,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     enable_caps_word();
                     enable_xcase_with(KC_UNDS);
-                }
-            }
-            return false;
-        case OS_RAIS:
-            if (record->event.pressed) {
-                os_sft_raise_timer = timer_read();
-                layer_on(_RAISE);
-            } else {
-                layer_off(_RAISE);
-                if (timer_elapsed(os_sft_raise_timer) < TAPPING_TERM + 50) {
-                    set_oneshot_mods(MOD_LSFT);
                 }
             }
             return false;

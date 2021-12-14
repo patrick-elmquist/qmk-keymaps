@@ -11,11 +11,11 @@
 #include "features/casemodes.h"
 
 #define _____________________QWERTY_L1______________________ KC_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T
-#define _____________________QWERTY_L2______________________ CTL_BSP, CTL_A,   ALT_S,   GUI_D,  SFT_F,    KC_G
+#define _____________________QWERTY_L2______________________ CTL_BSP, CTL_A,   ALT_S,   GUI_D,  SFT_F,   KC_G
 #define _____________________QWERTY_L3______________________ KC_LSFT, KC_Z,    KC_X,    KC_C,   KC_V,    KC_B
 
 #define _____________________QWERTY_R1______________________ KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSLS
-#define _____________________QWERTY_R2______________________ KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT
+#define _____________________QWERTY_R2______________________ KC_H,    SFT_J,   GUI_K,   ALT_L,  CTL_SCLN,KC_QUOT
 #define _____________________QWERTY_R3______________________ KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_MINS
 
 #define _____________________LOWER__L1______________________ _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
@@ -54,7 +54,7 @@
 #define _____________________ADJUST_R3______________________ _______, _______, _______, _______, _______, _______
 
 #define _________MOD_LEFT________ RAISE,   SYSTEM,  LOW_SPC
-#define _________MOD_RIGHT_______ OS_RAIS, RAI_ADP, ADAPT
+#define _________MOD_RIGHT_______ RAI_BSP, LOWER,   KC_LGUI
 
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)

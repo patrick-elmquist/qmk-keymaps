@@ -14,8 +14,7 @@
 #define LOW_ENT LT(_LOWER, KC_ENT)
 #define LOW_SPC LT(_LOWER, KC_SPC)
 #define RAI_ESC LT(_RAISE, KC_ESC)
-#define RAI_REP LT(_RAISE, REPEAT)
-#define RAI_ADP LT(_RAISE, ADAPT)
+#define RAI_BSP LT(_RAISE, KC_BSPC)
 #define CTL_BSP LCTL_T(KC_BSPC)
 
 // Left-hand home row mods
@@ -38,10 +37,7 @@ enum custom_keycodes {
     OS_LGUI,
     OS_LSFT,
 
-    OS_RAIS,
     SW_WIN,
-    REPEAT,
-    ADAPT,
     QUOTES,
     PARENS,
     BRCKETS,
