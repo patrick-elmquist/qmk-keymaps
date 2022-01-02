@@ -108,7 +108,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             term = 25;
             break;
 
-        case HJ_ARROW:
         case LTGT_ARROW:
         case MCOM_DLR:
         case KL_TAB:
@@ -127,16 +126,24 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ALT_S:
         case ALT_L:
+        case HOME_R:
+        case HOME_I:
             return TAPPING_TERM + 100;
         case LOW_SPC:
             return TAPPING_TERM + 100;
-        case CTL_A:
+        // case CTL_A:
         case CTL_SCLN:
+        case HOME_A:
+        case HOME_O:
             return TAPPING_TERM + 75;
         case GUI_D:
         case GUI_K:
         case SFT_F:
         case SFT_J:
+        case HOME_S:
+        case HOME_E:
+        case HOME_T:
+        case HOME_N:
         default:
             return TAPPING_TERM;
     }
@@ -144,7 +151,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case CTL_A:
+        // case CTL_A:
         case ALT_S:
         case GUI_D:
         case SFT_F:
@@ -152,6 +159,14 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case GUI_K:
         case ALT_L:
         case CTL_SCLN:
+        case HOME_A:
+        case HOME_R:
+        case HOME_S:
+        case HOME_T:
+        case HOME_N:
+        case HOME_E:
+        case HOME_I:
+        case HOME_O:
             return true;
         default:
             return false;
@@ -160,7 +175,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case CTL_A:
+        // case CTL_A:
         case ALT_S:
         case GUI_D:
         case SFT_F:
@@ -168,6 +183,14 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
         case GUI_K:
         case ALT_L:
         case CTL_SCLN:
+        case HOME_A:
+        case HOME_R:
+        case HOME_S:
+        case HOME_T:
+        case HOME_N:
+        case HOME_E:
+        case HOME_I:
+        case HOME_O:
             // Do not force the mod-tap key press to be handled as a modifier
             // if any other key was pressed while the mod-tap key is held down.
             return true;
@@ -192,6 +215,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     non_combo_input_timer = timer_read();
 
+    static uint16_t raise_bspc_timer;
+
+    uint16_t last_keycode = last_key();
     if (record->event.pressed) {
         append_keylog(keycode);
     }
@@ -249,6 +275,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+        case RAI_BSP:
+            if (record->event.pressed) {
+                raise_bspc_timer = timer_read();
+                layer_on(_RAISE);
+            } else {
+                layer_off(_RAISE);
+                if (timer_elapsed(raise_bspc_timer) < TAPPING_TERM && last_keycode == RAI_BSP) {
+                    tap_code16(KC_BSPC);
+                }
+            }
+            break;
         case SNK_SCM:
             if (record->event.pressed) {
                 if (get_xcase_delimiter() != KC_NO) {

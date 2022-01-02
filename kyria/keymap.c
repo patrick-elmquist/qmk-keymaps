@@ -50,6 +50,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  KC_LGUI, _________MOD_LEFT________, RAISE,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
     ),
 
+    [_COLEMAK] = LAYOUT_wrapper(
+      _____________________COLEMAK_L1_____________________,                                     _____________________COLEMAK_R1_____________________,
+      _____________________COLEMAK_L2_____________________,                                     _____________________COLEMAK_R2_____________________,
+      _____________________COLEMAK_L3_____________________, CAPS,    LOWER,   SNAKE,   SNK_SCM, _____________________COLEMAK_R3_____________________,
+                                 KC_LGUI, _________MOD_LEFT________, RAISE,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
+    ),
+
     [_LOWER] = LAYOUT_wrapper(
       _____________________LOWER__L1______________________,                                     _____________________LOWER__R1______________________,
       _____________________LOWER__L2______________________,                                     _____________________LOWER__R2______________________,
@@ -98,7 +105,10 @@ static void render_status(void) {
     oled_write_P(PSTR(" Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Default\n"), false);
+            oled_write_P(PSTR("Qwerty\n"), false);
+            break;
+        case _COLEMAK:
+            oled_write_P(PSTR("Colemak\n"), false);
             break;
         case _LOWER:
             oled_write_P(PSTR("Lower\n"), false);
@@ -117,13 +127,63 @@ static void render_status(void) {
     }
     render_case_mode_status(get_xcase_delimiter(), caps_word_enabled());
     render_combo_status();
+    render_mod_status_short();
 }
 
 void oled_task_user(void) {
     if (is_keyboard_master()) {
         render_status();
     } else {
-        render_mod_status_short();
+        switch (get_highest_layer(layer_state)) {
+            case _QWERTY:
+                oled_write_P(PSTR("QWERTY\n"), false);
+                render_empty_line();
+                oled_write_P(PSTR("Q W E R T Y U I O P \\\n"), false);
+                oled_write_P(PSTR("A S D F G H J K L ; '\n"), false);
+                oled_write_P(PSTR("Z X C V B N M , . / -\n"), false);
+                break;
+            case _LOWER:
+                oled_write_P(PSTR("LOWER\n"), false);
+                render_empty_line();
+                oled_write_P(PSTR("! @ # $ % ^ & * ( ) \\\n"), false);
+                oled_write_P(PSTR("# [ ( { ` + - / * ; '\n"), false);
+                oled_write_P(PSTR("% ^ [ ] ~ & = , . / -\n"), false);
+                break;
+            case _RAISE:
+                oled_write_P(PSTR("RAISE\n"), false);
+                render_empty_line();
+                oled_write_P(PSTR("1 2 3 4 5 6 7 8 9 0 \\\n"), false);
+                oled_write_P(PSTR("  [ ( { G         ; \"\n"), false);
+                oled_write_P(PSTR("  ] ) }       , . / -\n"), false);
+                break;
+            case _SYSTEM:
+                oled_write_P(PSTR("SYSTEM\n"), false);
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                break;
+            case _ADJUST:
+                oled_write_P(PSTR("ADJUST\n"), false);
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                break;
+            default:
+                oled_write_P(PSTR("UNDEFINED\n"), false);
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                render_empty_line();
+                break;
+        }
     }
 }
 

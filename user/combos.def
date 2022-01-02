@@ -33,10 +33,9 @@ SUBS(IO_NOT_EQL,         "?.",                 KC_I, KC_O)
 COMB(UIO_SNAKE_SCREAM,   SNK_SCM,              KC_U, KC_I, KC_O)
 
 // R2
-SUBS(HJ_ARROW,           "->",                 KC_H, KC_J)
-COMB(JK_ESC,             KC_ESC,               KC_J, KC_K)
-COMB(KL_TAB,             KC_TAB,               KC_K, KC_L)
-COMB(JL_EQL,             KC_EQL,               KC_J, KC_L)
+COMB(JK_ESC,             KC_ESC,               SFT_J,GUI_K)
+COMB(KL_TAB,             KC_TAB,               GUI_K,ALT_L)
+COMB(JL_EQL,             KC_EQL,               SFT_J,ALT_L)
 
 // R1
 SUBS(MCOM_DLR,           "!\"\""SS_TAP(X_LEFT),KC_M, KC_COMM)

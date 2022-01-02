@@ -16,6 +16,9 @@
 
 #pragma once
 
+// for refreshing secondary oled on layer
+#define SPLIT_LAYER_STATE_ENABLE
+
 #ifdef OLED_ENABLE
   #define OLED_DISPLAY_128X64
 #endif
