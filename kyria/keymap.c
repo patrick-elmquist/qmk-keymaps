@@ -142,40 +142,15 @@ void oled_task_user(void) {
                 oled_write_P(PSTR("A S D F G H J K L ; '\n"), false);
                 oled_write_P(PSTR("Z X C V B N M , . / -\n"), false);
                 break;
-            case _LOWER:
-                oled_write_P(PSTR("LOWER\n"), false);
+            case _COLEMAK:
+                oled_write_P(PSTR("COLEMAK\n"), false);
                 render_empty_line();
-                oled_write_P(PSTR("! @ # $ % ^ & * ( ) \\\n"), false);
-                oled_write_P(PSTR("# [ ( { ` + - / * ; '\n"), false);
-                oled_write_P(PSTR("% ^ [ ] ~ & = , . / -\n"), false);
-                break;
-            case _RAISE:
-                oled_write_P(PSTR("RAISE\n"), false);
-                render_empty_line();
-                oled_write_P(PSTR("1 2 3 4 5 6 7 8 9 0 \\\n"), false);
-                oled_write_P(PSTR("  [ ( { G         ; \"\n"), false);
-                oled_write_P(PSTR("  ] ) }       , . / -\n"), false);
-                break;
-            case _SYSTEM:
-                oled_write_P(PSTR("SYSTEM\n"), false);
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                break;
-            case _ADJUST:
-                oled_write_P(PSTR("ADJUST\n"), false);
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
-                render_empty_line();
+                oled_write_P(PSTR("Q W F P B J L U Y ; \\\n"), false);
+                oled_write_P(PSTR("A R S T G M N E I O '\n"), false);
+                oled_write_P(PSTR("Z X C D V K M , . / -\n"), false);
                 break;
             default:
-                oled_write_P(PSTR("UNDEFINED\n"), false);
+                render_empty_line();
                 render_empty_line();
                 render_empty_line();
                 render_empty_line();
