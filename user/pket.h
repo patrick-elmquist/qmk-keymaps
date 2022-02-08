@@ -41,10 +41,10 @@
 
 #define _____________________RAISE__R1______________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS
 #define _____________________RAISE__R2______________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, QUOTES
-#define _____________________RAISE__R3______________________ XXXXXXX, XXXXXXX, KC_COMM, KC_DOT, KC_SLSH, KC_MINS
+#define _____________________RAISE__R3______________________ XXXXXXX, XXXXXXX, SE_AO,   SE_AE,   SE_OE,   KC_MINS
 
 
-#define _____________________SYSTEM_L1______________________ _______, QUIT,    CLOSE,   SW_WIN,  RELOAD,  ITERM
+#define _____________________SYSTEM_L1______________________ _______, QUIT,    CLOSE,   SW_WIN,  SW_APP,  ITERM
 #define _____________________SYSTEM_L2______________________ _______, KC_9,    KC_5,    KC_3,    KC_1,    ALFRED
 #define _____________________SYSTEM_L3______________________ _______, _______, _______, _______, KC_7,    _______
 

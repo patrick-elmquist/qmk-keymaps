@@ -2,6 +2,7 @@
 #include "g/keymap_combo.h"
 
 bool sw_win_active = false;
+bool sw_app_active = false;
 oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
@@ -203,6 +204,7 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
+    update_swapper(&sw_app_active, KC_LGUI, KC_GRV, SW_APP, keycode, record);
 
     update_oneshot(&os_shft_state, KC_LSFT, OS_LSFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_LCTL, keycode, record);

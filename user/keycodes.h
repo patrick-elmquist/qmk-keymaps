@@ -51,6 +51,7 @@ enum custom_keycodes {
 
     RAI_BSP,
     SW_WIN,
+    SW_APP,
     QUOTES,
     PARENS,
     BRCKETS,
