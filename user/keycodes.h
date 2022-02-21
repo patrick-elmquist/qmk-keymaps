@@ -10,6 +10,7 @@
 
 #define ALFRED RGUI(KC_SPC)
 #define ITERM RGUI(KC_ESC)
+#define BSP_WRD LALT(KC_BSPC)
 
 #define LOW_ENT LT(_LOWER, KC_ENT)
 #define LOW_SPC LT(_LOWER, KC_SPC)

@@ -18,6 +18,7 @@
 #define _____________________QWERTY_R2______________________ KC_H,    SFT_J,   GUI_K,   ALT_L,  CTL_SCLN,KC_QUOT
 #define _____________________QWERTY_R3______________________ KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_MINS
 
+
 #define _____________________COLEMAK_L1_____________________ KC_TAB,  KC_Q,    KC_W,    KC_F,   KC_P,    KC_B
 #define _____________________COLEMAK_L2_____________________ CTL_BSP, HOME_A,  HOME_R,  HOME_S, HOME_T,  KC_G
 #define _____________________COLEMAK_L3_____________________ KC_LSFT, KC_Z,    KC_X,    KC_C,   KC_D,    KC_V
@@ -26,8 +27,9 @@
 #define _____________________COLEMAK_R2_____________________ KC_M,    HOME_N,  HOME_E,  HOME_I, HOME_O,  KC_QUOT
 #define _____________________COLEMAK_R3_____________________ KC_K,    KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_MINS
 
+
 #define _____________________LOWER__L1______________________ _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
-#define _____________________LOWER__L2______________________ _______, KC_HASH, BRCKETS, PARENS,  CURLYS,  KC_GRV
+#define _____________________LOWER__L2______________________ BSP_WRD, KC_HASH, BRCKETS, PARENS,  CURLYS,  KC_GRV
 #define _____________________LOWER__L3______________________ _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
 
 #define _____________________LOWER__R1______________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS
