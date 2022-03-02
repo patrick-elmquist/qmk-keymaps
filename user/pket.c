@@ -18,6 +18,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case LOWER:
+        case LOW_SPC:
         case RAISE:
         case SYSTEM:
             return true;
@@ -29,6 +30,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         case LOWER:
+        case LOW_SPC:
         case RAISE:
         case SYSTEM:
         case KC_LSFT:
@@ -131,7 +133,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_I:
             return TAPPING_TERM + 100;
         case LOW_SPC:
-            return TAPPING_TERM + 100;
+            return TAPPING_TERM + 0;
         // case CTL_A:
         case CTL_SCLN:
         case HOME_A:
