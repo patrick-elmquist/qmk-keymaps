@@ -124,6 +124,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     return term;
 }
 
+#define THUMB_EXTRA 0
+#define INDEX_EXTRA 0
+#define LONG_EXTRA 50
+#define RING_EXTRA 100
+#define PINKY_EXTRA 75
+
 // Tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -131,22 +137,24 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case ALT_L:
         case HOME_R:
         case HOME_I:
-            return TAPPING_TERM + 100;
-        case LOW_SPC:
-            return TAPPING_TERM + 0;
-        // case CTL_A:
+            return TAPPING_TERM + RING_EXTRA;
+        // case CTL_A: // same as HOME_A
         case CTL_SCLN:
         case HOME_A:
         case HOME_O:
-            return TAPPING_TERM + 75;
+            return TAPPING_TERM + PINKY_EXTRA;
         case GUI_D:
         case GUI_K:
-        case SFT_F:
-        case SFT_J:
         case HOME_S:
         case HOME_E:
+            return TAPPING_TERM + LONG_EXTRA;
+        case SFT_F:
+        case SFT_J:
         case HOME_T:
         case HOME_N:
+            return TAPPING_TERM + INDEX_EXTRA;
+        case LOW_SPC:
+            return TAPPING_TERM + THUMB_EXTRA;
         default:
             return TAPPING_TERM;
     }
