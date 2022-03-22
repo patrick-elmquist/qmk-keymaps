@@ -80,16 +80,22 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     uint16_t term;
     switch (index) {
         case WE_LCBR:
+        case WF_LCBR:
         case ER_RCBR:
+        case FP_RCBR:
             id = timer_elapsed(non_combo_input_timer) > 350 ? '1' : '2';
             term = timer_elapsed(non_combo_input_timer) > 350 ? 25 : 5;
             break;
 
         case WR_CBR_PAIR:
+        case WP_CBR_PAIR:
 
         case SD_LPRN:
+        case RS_LPRN:
         case DF_RPRN:
+        case ST_RPRN:
         case SF_PRN_PAIR:
+        case RT_PRN_PAIR:
 
         case XC_COPY:
         case CV_PASTE:
@@ -101,7 +107,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case XCV_PASTE_SFT:
         case WER_CBR_PAIR_IN:
+        case WFP_CBR_PAIR_IN:
         case SDF_PRN_PAIR_IN:
+        case RST_PRN_PAIR_IN:
             id = timer_elapsed(non_combo_input_timer) > 300 ? '3' : '4';
             term = timer_elapsed(non_combo_input_timer) > 300 ? 30 : 5;
             break;
@@ -115,6 +123,11 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case MCOM_DLR:
         case KL_TAB:
         case JK_ESC:
+        case JL_EQL:
+
+        case NE_ESC:
+        case EI_TAB:
+        case NI_EQL:
         default:
             id = '6';
             term = 35;
@@ -125,8 +138,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 }
 
 #define THUMB_EXTRA 0
-#define INDEX_EXTRA 0
-#define LONG_EXTRA 50
+#define INDEX_EXTRA 20
+#define LONG_EXTRA 75
 #define RING_EXTRA 100
 #define PINKY_EXTRA 75
 

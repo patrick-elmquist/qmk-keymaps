@@ -1,8 +1,8 @@
 #pragma once
 
 enum layer_number {
-    _QWERTY = 0,
-    _COLEMAK,
+    _COLEMAK = 0,
+    _QWERTY,
     _LOWER,
     _RAISE,
     _SYSTEM,
