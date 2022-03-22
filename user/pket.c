@@ -79,22 +79,16 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     char id;
     uint16_t term;
     switch (index) {
-        case WE_LCBR:
         case WF_LCBR:
-        case ER_RCBR:
         case FP_RCBR:
             id = timer_elapsed(non_combo_input_timer) > 350 ? '1' : '2';
             term = timer_elapsed(non_combo_input_timer) > 350 ? 25 : 5;
             break;
 
-        case WR_CBR_PAIR:
         case WP_CBR_PAIR:
 
-        case SD_LPRN:
         case RS_LPRN:
-        case DF_RPRN:
         case ST_RPRN:
-        case SF_PRN_PAIR:
         case RT_PRN_PAIR:
 
         case XC_COPY:
@@ -102,28 +96,23 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case XV_CUT:
         case ZX_UNDO:
 
-        case UI_QUES_DOT:
-        case IO_NOT_EQL:
+        case LU_QUES_DOT:
+        case UY_NOT_EQL:
 
         case XCV_PASTE_SFT:
-        case WER_CBR_PAIR_IN:
         case WFP_CBR_PAIR_IN:
-        case SDF_PRN_PAIR_IN:
         case RST_PRN_PAIR_IN:
             id = timer_elapsed(non_combo_input_timer) > 300 ? '3' : '4';
             term = timer_elapsed(non_combo_input_timer) > 300 ? 30 : 5;
             break;
 
-        case UIO_SNAKE_SCREAM:
+        case LUY_SNAKE_SCREAM:
             id = '5';
             term = 25;
             break;
 
         case LTGT_ARROW:
-        case MCOM_DLR:
-        case KL_TAB:
-        case JK_ESC:
-        case JL_EQL:
+        case HCOM_DLR:
 
         case NE_ESC:
         case EI_TAB:
