@@ -84,6 +84,9 @@ void render_default_layer_state(void) {
         case _SYSTEM:
             oled_write_P(PSTR("SYS"), false);
             break;
+        case _NUM:
+            oled_write_P(PSTR("NUM"), false);
+            break;
         case _ADJUST:
             oled_write_P(PSTR("ADJ"), false);
             break;

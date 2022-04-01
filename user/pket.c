@@ -99,24 +99,25 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case LU_QUES_DOT:
         case UY_NOT_EQL:
 
-        case XCV_PASTE_SFT:
-        case WFP_CBR_PAIR_IN:
-        case RST_PRN_PAIR_IN:
-            id = timer_elapsed(non_combo_input_timer) > 300 ? '3' : '4';
-            term = timer_elapsed(non_combo_input_timer) > 300 ? 30 : 5;
-            break;
-
         case LUY_SNAKE_SCREAM:
             id = '5';
             term = 25;
             break;
 
+        case EI_TAB:
+        case NI_EQL:
+        case NE_ESC:
+            id = '3';
+            term = 30;
+            break;
+
         case LTGT_ARROW:
         case HCOM_DLR:
 
-        case NE_ESC:
-        case EI_TAB:
-        case NI_EQL:
+        case XCV_PASTE_SFT:
+        case WFP_CBR_PAIR_IN:
+        case RST_PRN_PAIR_IN:
+
         default:
             id = '6';
             term = 35;
@@ -128,8 +129,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
 #define THUMB_EXTRA 0
 #define INDEX_EXTRA 20
-#define LONG_EXTRA 75
-#define RING_EXTRA 100
+#define LONG_EXTRA 100
+#define RING_EXTRA 80
 #define PINKY_EXTRA 75
 
 // Tapping term

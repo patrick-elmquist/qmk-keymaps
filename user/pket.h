@@ -46,6 +46,15 @@
 #define _____________________RAISE__R3______________________ XXXXXXX, KC_UNDS, _______, _______, _______, _______
 
 
+#define _____________________NUM_L1_________________________ _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define _____________________NUM_L2_________________________ _______, XXXXXXX, KC_LBRC, KC_LPRN, KC_LCBR, SFT_G
+#define _____________________NUM_L3_________________________ _______, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX
+
+#define _____________________NUM_R1_________________________ XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, _______
+#define _____________________NUM_R2_________________________ KC_0,    KC_1,    KC_2,    KC_3,    XXXXXXX, QUOTES
+#define _____________________NUM_R3_________________________ XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, _______
+
+
 #define _____________________SYSTEM_L1______________________ _______, QUIT,    CLOSE,   SW_WIN,  SW_APP,  ITERM
 #define _____________________SYSTEM_L2______________________ _______, OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, ALFRED
 #define _____________________SYSTEM_L3______________________ _______, _______, _______, _______, _______, _______
@@ -64,7 +73,7 @@
 #define _____________________ADJUST_R3______________________ _______, _______, _______, _______, _______, _______
 
 #define _________MOD_LEFT________ RAISE,   SYSTEM,  LOW_SPC
-#define _________MOD_RIGHT_______ RAI_BSP, LOWER,   KC_LGUI
+#define _________MOD_RIGHT_______ RAI_BSP, NUM,   KC_LGUI
 
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)

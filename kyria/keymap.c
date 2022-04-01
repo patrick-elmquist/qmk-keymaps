@@ -71,6 +71,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
+    [_NUM] = LAYOUT_wrapper(
+      _____________________NUM_L1_________________________,                                     _____________________NUM_R1_________________________,
+      _____________________NUM_L2_________________________,                                     _____________________NUM_R2_________________________,
+      _____________________NUM_L3_________________________, _______, _______, _______, _______, _____________________NUM_R3_________________________,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
     [_SYSTEM] = LAYOUT_wrapper(
       _____________________SYSTEM_L1______________________,                                     _____________________SYSTEM_R1______________________,
       _____________________SYSTEM_L2______________________,                                     _____________________SYSTEM_R2______________________,
@@ -122,6 +129,9 @@ static void render_status(void) {
         case _ADJUST:
             oled_write_P(PSTR("Adjust\n"), false);
             break;
+        case _NUM:
+            oled_write_P(PSTR("Num\n"), false);
+            break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
     }
@@ -147,7 +157,14 @@ void oled_task_user(void) {
                 render_empty_line();
                 oled_write_P(PSTR("Q W F P B J L U Y ; \\\n"), false);
                 oled_write_P(PSTR("A R S T G M N E I O '\n"), false);
-                oled_write_P(PSTR("Z X C D V K M , . / -\n"), false);
+                oled_write_P(PSTR("Z X C D V K H , . / -\n"), false);
+                break;
+            case _NUM:
+                oled_write_P(PSTR("NUM\n"), false);
+                render_empty_line();
+                oled_write_P(PSTR("            7 8 9    \n"), false);
+                oled_write_P(PSTR("          0 1 2 3    \n"), false);
+                oled_write_P(PSTR("            4 5 6    \n"), false);
                 break;
             default:
                 render_empty_line();

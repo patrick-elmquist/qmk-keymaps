@@ -3,6 +3,7 @@
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define SYSTEM MO(_SYSTEM)
+#define NUM MO(_NUM)
 
 #define QUIT RGUI(KC_Q)
 #define CLOSE RGUI(KC_W)
