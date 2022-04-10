@@ -6,12 +6,12 @@
 // TODO make double tapping the number layer toggle NUMWORD
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [_QWERTY] = LAYOUT_wrapper( \
+    [_COLEMAK] = LAYOUT_wrapper( \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        _____________________QWERTY_L1______________________,                    _____________________QWERTY_R1______________________,
-        _____________________QWERTY_L2______________________,                    _____________________QWERTY_R2______________________,
-        _____________________QWERTY_L3______________________, KC_LBRC,  KC_RBRC, _____________________QWERTY_R3______________________,
-                                      XXXXXXX, RAISE, SYSTEM, LOW_SPC,  LOW_ENT, RAISE, LOWER,  XXXXXXX
+        _____________________COLEMAK_L1_____________________,                    _____________________COLEMAK_R1_____________________,
+        _____________________COLEMAK_L2_____________________,                    _____________________COLEMAK_R2_____________________,
+        _____________________COLEMAK_L3_____________________, KC_LBRC,  KC_RBRC, _____________________COLEMAK_R3_____________________,
+                                      XXXXXXX, RAISE, SYSTEM, LOW_SPC,  RAI_ENT, LOWER, LOWER,  XXXXXXX
         ),
 
     [_LOWER] = LAYOUT_wrapper( \

@@ -72,8 +72,8 @@
 #define _____________________ADJUST_R2______________________ _______, _______, _______, KC_F11,  KC_F12,  TG_QWER
 #define _____________________ADJUST_R3______________________ _______, _______, _______, _______, _______, _______
 
-#define _________MOD_LEFT________ RAISE,   SYSTEM,  LOW_SPC
-#define _________MOD_RIGHT_______ RAI_BSP, NUM,   KC_LGUI
+#define _________MOD_LEFT________ RAISE,   SYSTEM,  KC_SPC
+#define _________MOD_RIGHT_______ RAISE,   LOWER,   KC_LGUI
 
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)

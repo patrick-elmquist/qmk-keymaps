@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_wrapper(
       _____________________COLEMAK_L1_____________________,                                     _____________________COLEMAK_R1_____________________,
       _____________________COLEMAK_L2_____________________,                                     _____________________COLEMAK_R2_____________________,
-      _____________________COLEMAK_L3_____________________, CAPS,    LOWER,   SNAKE,   SNK_SCM, _____________________COLEMAK_R3_____________________,
+      _____________________COLEMAK_L3_____________________, CAPS,    LOWER,   SNK_SCM, BSP_WRD, _____________________COLEMAK_R3_____________________,
                                  KC_LGUI, _________MOD_LEFT________, RAISE,   LOW_ENT, _________MOD_RIGHT_______, KC_LALT
     ),
 

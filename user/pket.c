@@ -127,7 +127,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     return term;
 }
 
-#define THUMB_EXTRA 0
+#define THUMB_EXTRA 75
 #define INDEX_EXTRA 20
 #define LONG_EXTRA 100
 #define RING_EXTRA 80
