@@ -106,9 +106,20 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case EI_TAB:
         case NI_EQL:
-        case NE_ESC:
             id = '3';
             term = 30;
+            break;
+
+        case NE_ESC:
+            id = timer_elapsed(non_combo_input_timer) > 250 ? '4' : '7';
+            term = timer_elapsed(non_combo_input_timer) > 250 ? 30 : 5;
+            break;
+
+        case SWE_AO:
+        case SWE_AE:
+        case SWE_OE:
+            id = '8';
+            term = 40;
             break;
 
         case LTGT_ARROW:
