@@ -51,22 +51,21 @@
 #define _____________________LOWER__R2_S____________________ KC_PLUS, KC_MINS, KC_SLSH, KC_COMM, KC_SCLN
 #define _____________________LOWER__R3_S____________________ KC_EQL,  KC_UNDS, KC_COMM, KC_DOT,  KC_SLSH
 
+#define ________________RAISE__L1_5________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define ________________RAISE__L2_5________________ XXXXXXX, KC_LBRC, KC_LPRN, KC_LCBR, SFT_G
+#define ________________RAISE__L3_5________________ XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX
 
-#define _____________________RAISE__L1______________________ _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define _____________________RAISE__L2______________________ _______, XXXXXXX, KC_LBRC, KC_LPRN, KC_LCBR, SFT_G
-#define _____________________RAISE__L3______________________ _______, XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX
+#define ________________RAISE__R1_5________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define ________________RAISE__R2_5________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN
+#define ________________RAISE__R3_5________________ XXXXXXX, KC_UNDS, _______, _______, _______
 
-#define _____________________RAISE__R1______________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
-#define _____________________RAISE__R2______________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, QUOTES
-#define _____________________RAISE__R3______________________ XXXXXXX, KC_UNDS, _______, _______, _______, _______
+#define _____________________RAISE__L1______________________ _______, ________________RAISE__L1_5________________
+#define _____________________RAISE__L2______________________ _______, ________________RAISE__L2_5________________
+#define _____________________RAISE__L3______________________ _______, ________________RAISE__L3_5________________
 
-#define _____________________RAISE__L1_S____________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define _____________________RAISE__L2_S____________________ XXXXXXX, KC_LBRC, KC_LPRN, KC_LCBR, SFT_G
-#define _____________________RAISE__L3_S____________________ XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX
-
-#define _____________________RAISE__R1_S____________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define _____________________RAISE__R2_S____________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN
-#define _____________________RAISE__R3_S____________________ XXXXXXX, KC_UNDS, _______, _______, _______
+#define _____________________RAISE__R1______________________ ________________RAISE__R1_5________________, _______
+#define _____________________RAISE__R2______________________ ________________RAISE__R2_5________________, QUOTES
+#define _____________________RAISE__R3______________________ ________________RAISE__R3_5________________, _______
 
 
 #define _____________________NUM_L1_________________________ _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
