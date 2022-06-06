@@ -72,6 +72,9 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
 
 // Combo functions
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
+    if (index == HCOM_DLR) {
+        return false;
+    }
     return true;
 }
 
@@ -242,6 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     non_combo_input_timer = timer_read();
 
     static uint16_t raise_bspc_timer;
+    static uint16_t quote_timer;
 
     uint16_t last_keycode = last_key();
     if (record->event.pressed) {
@@ -250,8 +254,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case QUOTES:
+            // if (record->event.pressed) {
+            //     SEND_STRING("\"\""SS_TAP(X_LEFT));
+            // }
             if (record->event.pressed) {
-                SEND_STRING("\"\""SS_TAP(X_LEFT));
+                quote_timer = timer_read();
+                tap_code16(KC_DQUO);
+            } else if (timer_elapsed(quote_timer) > TAPPING_TERM) {
+                SEND_STRING("\""SS_TAP(X_LEFT));
             }
             return false;
         case CURLYS:

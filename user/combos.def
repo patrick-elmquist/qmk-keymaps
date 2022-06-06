@@ -40,15 +40,13 @@ COMB(EI_TAB,             KC_TAB,               HOME_E,HOME_I)
 COMB(NI_EQL,             KC_EQL,               HOME_N,HOME_I)
 
 // R1
-SUBS(HCOM_DLR,           "!\"\""SS_TAP(X_LEFT),KC_H, KC_COMM)
+COMB(HCOM_DLR,           QUOTES,               KC_H, KC_COMM)
 SUBS(LTGT_ARROW,         "->",                 KC_COMM, KC_DOT)
 
 // ==========
 // SWE
 // ==========
 
-// TODO I need to come up with something better than this cause
-//      this sucks...
 COMB(SWE_AO,             SE_AO,                HOME_A, HOME_O)
 COMB(SWE_AE,             SE_AE,                HOME_A, HOME_E)
 COMB(SWE_OE,             SE_OE,                HOME_O, HOME_E)
