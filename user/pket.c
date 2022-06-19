@@ -72,8 +72,9 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
 
 // Combo functions
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
-    if (index == HCOM_DLR) {
-        return false;
+    switch(index) {
+        case HCOM_DQUOT:
+            return false;
     }
     return true;
 }
@@ -96,17 +97,16 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case XC_COPY:
         case CV_PASTE:
-        case XV_CUT:
-        case ZX_UNDO:
-
         case LU_QUES_DOT:
-        case UY_NOT_EQL:
 
         case LUY_SNAKE_SCREAM:
             id = '5';
             term = 25;
             break;
 
+        case XV_CUT:
+        case ZX_UNDO:
+        case UY_QUOT:
         case EI_TAB:
         case NI_EQL:
             id = '3';
@@ -126,7 +126,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             break;
 
         case LTGT_ARROW:
-        case HCOM_DLR:
+        case HCOM_DQUOT:
 
         case XCV_PASTE_SFT:
         case WFP_CBR_PAIR_IN:
@@ -254,9 +254,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case QUOTES:
-            // if (record->event.pressed) {
-            //     SEND_STRING("\"\""SS_TAP(X_LEFT));
-            // }
             if (record->event.pressed) {
                 quote_timer = timer_read();
                 tap_code16(KC_DQUO);

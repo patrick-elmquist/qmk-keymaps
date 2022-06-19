@@ -9,6 +9,12 @@
 #define CLOSE RGUI(KC_W)
 #define RELOAD RGUI(KC_R)
 
+#define WIN_LFT C(A(KC_LEFT))
+#define WIN_RGT C(A(KC_RGHT))
+#define WIN_MAX C(A(KC_ENT))
+#define WIN_RES C(A(KC_BSPC))
+#define WIN_CEN C(A(KC_C))
+
 #define ALFRED RGUI(KC_SPC)
 #define ITERM RGUI(KC_ESC)
 #define BSP_WRD LALT(KC_BSPC)
@@ -18,9 +24,6 @@
 #define LOW_SPC LT(_LOWER, KC_SPC)
 #define RAI_ESC LT(_RAISE, KC_ESC)
 #define CTL_BSP LCTL_T(KC_BSPC)
-
-#define TG_QWER TG(_QWERTY)
-#define TG_COLM TG(_COLEMAK)
 
 // Left-hand home row mods
 #define CTL_A LCTL_T(KC_A)
