@@ -3,3 +3,6 @@ TODO:
 - Replace custom caps word implementation with the built in one (if it makes sense)
 - Investigate if usb split detection has anything to do with it taking a disconnect/connect cycle for the keyboard to work
 - Hardware: add some solder to X and A switches on the Sweep
+- Investigate vertical combos for programming bigrams like ==, >=, <=, ?:, ?., -> etc
+- Add shortcuts for common VIM shortcuts like split, Ex etc
+- Should I add regular Caps word or is screaming snake enough?
