@@ -31,7 +31,7 @@ COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
 // R3
 COMB(JL_AMPR,            KC_AMPR,              KC_J, KC_L)
 SUBS(LU_QUES_DOT,        "!=",                 KC_L, KC_U)
-COMB(UY_QUOT,            KC_QUOT,              KC_U, KC_Y)
+COMB(UY_QUOT,            S_QUOTE,              KC_U, KC_Y)
 COMB(LUY_SNAKE_SCREAM,   SNK_SCM,              KC_L, KC_U, KC_Y)
 
 // R2
@@ -40,8 +40,17 @@ COMB(EI_TAB,             KC_TAB,               HOME_E,HOME_I)
 COMB(NI_EQL,             KC_EQL,               HOME_N,HOME_I)
 
 // R1
-COMB(HCOM_DQUOT,         QUOTES,               KC_H, KC_COMM)
+COMB(HCOM_DQUOT,         D_QUOTE,              KC_H, KC_COMM)
 SUBS(LTGT_ARROW,         "->",                 KC_COMM, KC_DOT)
+
+// Vertical
+COMB(VCB_LN,             S_QUOTE,              HOME_N, KC_L)
+COMB(VCB_NH,             D_QUOTE,              HOME_N, KC_H)
+
+// ==========
+// BOTH
+// ==========
+COMB(HCB_TN,             CAPS,                 HOME_T, HOME_N)
 
 // ==========
 // SWE

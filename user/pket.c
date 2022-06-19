@@ -74,6 +74,8 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     switch(index) {
         case HCOM_DQUOT:
+        case VCB_LN:
+        case VCB_NH:
             return false;
     }
     return true;
@@ -104,6 +106,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             term = 25;
             break;
 
+        case VCB_LN:
+        case VCB_NH:
         case XV_CUT:
         case ZX_UNDO:
         case UY_QUOT:
@@ -245,7 +249,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     non_combo_input_timer = timer_read();
 
     static uint16_t raise_bspc_timer;
-    static uint16_t quote_timer;
+    static uint16_t single_quote_timer;
+    static uint16_t double_quote_timer;
 
     uint16_t last_keycode = last_key();
     if (record->event.pressed) {
@@ -253,12 +258,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case QUOTES:
+        case S_QUOTE:
             if (record->event.pressed) {
-                quote_timer = timer_read();
+                single_quote_timer = timer_read();
+                tap_code16(KC_QUOT);
+            } else if (timer_elapsed(single_quote_timer) > TAPPING_TERM) {
+                tap_code16(KC_QUOT);
+                tap_code16(KC_LEFT);
+            }
+            return false;
+        case D_QUOTE:
+            if (record->event.pressed) {
+                double_quote_timer = timer_read();
                 tap_code16(KC_DQUO);
-            } else if (timer_elapsed(quote_timer) > TAPPING_TERM) {
-                SEND_STRING("\""SS_TAP(X_LEFT));
+            } else if (timer_elapsed(double_quote_timer) > TAPPING_TERM) {
+                tap_code16(KC_DQUO);
+                tap_code16(KC_LEFT);
             }
             return false;
         case CURLYS:
