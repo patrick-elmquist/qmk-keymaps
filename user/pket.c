@@ -248,11 +248,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     non_combo_input_timer = timer_read();
 
-    static uint16_t raise_bspc_timer;
     static uint16_t single_quote_timer;
     static uint16_t double_quote_timer;
 
-    uint16_t last_keycode = last_key();
     if (record->event.pressed) {
         append_keylog(keycode);
     }
@@ -323,17 +321,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-        case RAI_BSP:
-            if (record->event.pressed) {
-                raise_bspc_timer = timer_read();
-                layer_on(_RAISE);
-            } else {
-                layer_off(_RAISE);
-                if (timer_elapsed(raise_bspc_timer) < TAPPING_TERM && last_keycode == RAI_BSP) {
-                    tap_code16(KC_BSPC);
-                }
-            }
-            break;
         case SNK_SCM:
             if (record->event.pressed) {
                 if (get_xcase_delimiter() != KC_NO) {

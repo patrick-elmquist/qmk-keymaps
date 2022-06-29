@@ -55,7 +55,6 @@ enum custom_keycodes {
     OS_LGUI,
     OS_LSFT,
 
-    RAI_BSP,
     SW_WIN,
     SW_APP,
     S_QUOTE,
