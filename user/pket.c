@@ -256,6 +256,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        // TODO could I merge these like the swe chars?
         case S_QUOTE:
             if (record->event.pressed) {
                 single_quote_timer = timer_read();
@@ -274,6 +275,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(KC_LEFT);
             }
             return false;
+        // TODO could I merge this three like swe chars?
         case CURLYS:
             if (record->event.pressed) {
                 SEND_STRING("{}"SS_TAP(X_LEFT));
@@ -311,6 +313,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 toggle_caps_word();
             }
             return false;
+        // TODO these two are never used afaik
         case SNAKE:
         case CAMEL:
             if (record->event.pressed) {

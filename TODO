@@ -6,3 +6,4 @@ TODO:
 - Investigate vertical combos for programming bigrams like ==, >=, <=, ?:, ?., -> etc
 - Add shortcuts for common VIM shortcuts like split, Ex etc
 - Should I add regular Caps word or is screaming snake enough?
+- Investigate why the cleanup of Sweep config.h messed up the home row mods
