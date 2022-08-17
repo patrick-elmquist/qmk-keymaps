@@ -9,6 +9,7 @@ oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_cmd_state = os_up_unqueued;
 
 static uint16_t non_combo_input_timer = 0;
+uint8_t mod_state;
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
@@ -98,7 +99,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case RT_PRN_PAIR:
 
         case XC_COPY:
-        case CV_PASTE:
+        case CD_PASTE:
         case LU_QUES_DOT:
 
         case LUY_SNAKE_SCREAM:
@@ -108,7 +109,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case VCB_LN:
         case VCB_NH:
-        case XV_CUT:
+        case XD_CUT:
         case ZX_UNDO:
         case UY_QUOT:
         case EI_TAB:
@@ -132,7 +133,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case LTGT_ARROW:
         case HCOM_DQUOT:
 
-        case XCV_PASTE_SFT:
+        case XCD_PASTE_SFT:
         case WFP_CBR_PAIR_IN:
         case RST_PRN_PAIR_IN:
 
@@ -145,8 +146,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     return term;
 }
 
-#define THUMB_EXTRA 75
-#define INDEX_EXTRA 20
+#define THUMB_EXTRA 50
+#define INDEX_EXTRA -20
 #define LONG_EXTRA 100
 #define RING_EXTRA 80
 #define PINKY_EXTRA 75
@@ -255,7 +256,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         append_keylog(keycode);
     }
 
+    mod_state = get_mods();
+
     switch (keycode) {
+        case KC_BSPC: {
+            // Initialize a boolean variable that keeps track
+            // of the delete key status: registered or not?
+            static bool delkey_registered;
+            if (record->event.pressed) {
+                // Detect the activation of either shift keys
+                if (mod_state & MOD_MASK_SHIFT) {
+                    // First temporarily canceling both shifts so that
+                    // shift isn't applied to the KC_DEL keycode
+                    del_mods(MOD_MASK_SHIFT);
+                    register_code(KC_DEL);
+                    // Update the boolean variable to reflect the status of KC_DEL
+                    delkey_registered = true;
+                    // Reapplying modifier state so that the held shift key(s)
+                    // still work even after having tapped the Backspace/Delete key.
+                    set_mods(mod_state);
+                    return false;
+                }
+            } else { // on release of KC_BSPC
+                     // In case KC_DEL is still being sent even after the release of KC_BSPC
+                if (delkey_registered) {
+                    unregister_code(KC_DEL);
+                    delkey_registered = false;
+                    return false;
+                }
+            }
+            // Let QMK process the KC_BSPC keycode as usual outside of shift
+            return true;
+        }
         // TODO could I merge these like the swe chars?
         case S_QUOTE:
             if (record->event.pressed) {

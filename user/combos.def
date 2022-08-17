@@ -17,10 +17,8 @@ COMB(RST_PRN_PAIR_IN,    PARENS,               HOME_R, HOME_S, HOME_T)
 
 // R1
 COMB(XC_COPY,            LGUI(KC_C),           KC_X, KC_C)
-COMB(CV_PASTE,           LGUI(KC_V),           KC_C, KC_V)
 COMB(CD_PASTE,           LGUI(KC_V),           KC_C, KC_D)
-COMB(XV_CUT,             LGUI(KC_X),           KC_X, KC_V)
-COMB(XCV_PASTE_SFT,      LGUI(S(KC_V)),        KC_X, KC_C, KC_V)
+COMB(XD_CUT,             LGUI(KC_X),           KC_X, KC_D)
 COMB(XCD_PASTE_SFT,      LGUI(S(KC_V)),        KC_X, KC_C, KC_D)
 COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
 
