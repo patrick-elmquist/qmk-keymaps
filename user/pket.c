@@ -157,23 +157,15 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 // Tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case ALT_S:
-        case ALT_L:
         case HOME_R:
         case HOME_I:
             return TAPPING_TERM + RING_EXTRA;
-        // case CTL_A: // same as HOME_A
-        case CTL_SCLN:
         case HOME_A:
         case HOME_O:
             return TAPPING_TERM + PINKY_EXTRA;
-        case GUI_D:
-        case GUI_K:
         case HOME_S:
         case HOME_E:
             return TAPPING_TERM + LONG_EXTRA;
-        case SFT_F:
-        case SFT_J:
         case HOME_T:
         case HOME_N:
             return TAPPING_TERM + INDEX_EXTRA;
@@ -186,14 +178,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case CTL_A:
-        case ALT_S:
-        case GUI_D:
-        case SFT_F:
-        case SFT_J:
-        case GUI_K:
-        case ALT_L:
-        case CTL_SCLN:
         case HOME_A:
         case HOME_R:
         case HOME_S:
@@ -210,14 +194,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case CTL_A:
-        case ALT_S:
-        case GUI_D:
-        case SFT_F:
-        case SFT_J:
-        case GUI_K:
-        case ALT_L:
-        case CTL_SCLN:
         case HOME_A:
         case HOME_R:
         case HOME_S:
