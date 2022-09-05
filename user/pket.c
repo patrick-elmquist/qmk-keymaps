@@ -1,4 +1,5 @@
 #include "pket.h"
+#include "print.h"
 #include "g/keymap_combo.h"
 
 bool sw_win_active = false;
@@ -77,6 +78,7 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
         case HCOM_DQUOT:
         case VCB_LN:
         case VCB_NH:
+        case THUMB_N:
             return false;
     }
     return true;
@@ -120,7 +122,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case NE_ESC:
             id = timer_elapsed(non_combo_input_timer) > 250 ? '4' : '7';
-            term = timer_elapsed(non_combo_input_timer) > 250 ? 30 : 5;
+            term = timer_elapsed(non_combo_input_timer) > 250 ? 35 : 5;
             break;
 
         case SWE_AO:
@@ -146,7 +148,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     return term;
 }
 
-#define THUMB_EXTRA 50
+#define THUMB_EXTRA 45
 #define INDEX_EXTRA -20
 #define LONG_EXTRA 100
 #define RING_EXTRA 80
@@ -235,6 +237,8 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
     update_swapper(&sw_app_active, KC_LGUI, KC_GRV, SW_APP, keycode, record);
 
@@ -262,12 +266,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_BSPC: {
             // Initialize a boolean variable that keeps track
             // of the delete key status: registered or not?
+            //
             static bool delkey_registered;
             if (record->event.pressed) {
                 // Detect the activation of either shift keys
                 if (mod_state & MOD_MASK_SHIFT) {
                     // First temporarily canceling both shifts so that
                     // shift isn't applied to the KC_DEL keycode
+                    uprintf("Delete pressed");
                     del_mods(MOD_MASK_SHIFT);
                     register_code(KC_DEL);
                     // Update the boolean variable to reflect the status of KC_DEL

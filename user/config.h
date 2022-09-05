@@ -11,10 +11,13 @@
 
 #define TAPPING_TERM_PER_KEY
 #define TAPPING_FORCE_HOLD_PER_KEY
-
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 #define SPLIT_MODS_ENABLE
 
 // Should reduce the total firmware footprint according to some blog post
 #define DISABLE_LEADER
+
+// Not supported without flto
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION

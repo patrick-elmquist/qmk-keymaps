@@ -44,6 +44,8 @@ SUBS(LTGT_ARROW,         "->",                 KC_COMM, KC_DOT)
 // Vertical
 COMB(VCB_LN,             S_QUOTE,              HOME_N, KC_L)
 COMB(VCB_NH,             D_QUOTE,              HOME_N, KC_H)
+COMB(VCB_UI,             KC_BSLS,              KC_U, HOME_I)
+COMB(THUMB_N,            KC_MINS,              RAI_ENT, HOME_N)
 
 // ==========
 // BOTH
