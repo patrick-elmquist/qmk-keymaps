@@ -21,6 +21,7 @@
 
 #define LOW_ENT LT(_LOWER, KC_ENT)
 #define RAI_ENT LT(_RAISE, KC_ENT)
+#define RAI_BSP LT(_RAISE, KC_BSPC)
 #define LOW_SPC LT(_LOWER, KC_SPC)
 #define RAI_ESC LT(_RAISE, KC_ESC)
 #define CTL_BSP LCTL_T(KC_BSPC)
