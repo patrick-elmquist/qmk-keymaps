@@ -5,6 +5,7 @@ I posted a guide for how to set this up: [Post@Medium](https://medium.com/@patri
 
 Keyboards:
 - Ferris Sweep / Choc Pro Red
+- Ferris Sweep / Choc Pink
 - Kyria / Gateron Yellow
 - Lily58 / Boba U4 Silent
 

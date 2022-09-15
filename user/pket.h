@@ -12,11 +12,11 @@
 
 // 5 column
 #define ________________COLEMAK_L1_5_______________ KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define ________________COLEMAK_L2_5_______________ KC_A,    KC_R,    KC_S,    HOME_T,  KC_G
+#define ________________COLEMAK_L2_5_______________ HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G
 #define ________________COLEMAK_L3_5_______________ KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
 
 #define ________________COLEMAK_R1_5_______________ KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define ________________COLEMAK_R2_5_______________ KC_M,    HOME_N,  KC_E,    KC_I,    KC_O
+#define ________________COLEMAK_R2_5_______________ KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O
 #define ________________COLEMAK_R3_5_______________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
 #define ________________LOWER__L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
@@ -39,7 +39,7 @@
 #define ________________SYSTEM_L2_5________________ OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, ALFRED
 #define ________________SYSTEM_L3_5________________ _______, _______, _______, _______, _______
 
-#define ________________SYSTEM_R1_5________________ _______, _______, WIN_MAX, _______, _______
+#define ________________SYSTEM_R1_5________________ _______, _______, WIN_MAX, BACK,    FORWARD
 #define ________________SYSTEM_R2_5________________ _______, WIN_LFT, WIN_CEN, WIN_RGT, _______
 #define ________________SYSTEM_R3_5________________ _______, WIN_RES, _______, _______, _______
 

@@ -15,6 +15,9 @@
 #define WIN_RES C(A(KC_BSPC))
 #define WIN_CEN C(A(KC_C))
 
+#define BACK RGUI(KC_LBRC)
+#define FORWARD RGUI(KC_RBRC)
+
 #define ALFRED RGUI(KC_SPC)
 #define ITERM RGUI(KC_ESC)
 #define BSP_WRD LALT(KC_BSPC)

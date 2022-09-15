@@ -78,7 +78,9 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
         case HCOM_DQUOT:
         case VCB_LN:
         case VCB_NH:
-        case THUMB_N:
+        // case THUMB_M:
+        // case THUMB_N:
+        // case THUMB_H:
             return false;
     }
     return true;
@@ -120,11 +122,15 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             term = 30;
             break;
 
+        // case THUMB_N:
         case NE_ESC:
-            id = timer_elapsed(non_combo_input_timer) > 250 ? '4' : '7';
-            term = timer_elapsed(non_combo_input_timer) > 250 ? 35 : 5;
+            id = timer_elapsed(non_combo_input_timer) > 200 ? '4' : '7';
+            term = timer_elapsed(non_combo_input_timer) > 200 ? 35 : 5;
             break;
 
+        // case THUMB_M:
+        // case THUMB_H:
+        case HCOM_DQUOT:
         case SWE_AO:
         case SWE_AE:
         case SWE_OE:
@@ -133,8 +139,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             break;
 
         case LTGT_ARROW:
-        case HCOM_DQUOT:
-
         case XCD_PASTE_SFT:
         case WFP_CBR_PAIR_IN:
         case RST_PRN_PAIR_IN:
@@ -149,10 +153,10 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 }
 
 #define THUMB_EXTRA 45
-#define INDEX_EXTRA -20
+#define INDEX_EXTRA -25
 #define LONG_EXTRA 100
 #define RING_EXTRA 80
-#define PINKY_EXTRA 75
+#define PINKY_EXTRA 100
 
 // Tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
