@@ -7,3 +7,8 @@ TODO:
 - Add shortcuts for common VIM shortcuts like split, Ex etc
 - Should I add regular Caps word or is screaming snake enough?
 - Investigate why the cleanup of Sweep config.h messed up the home row mods
+
+
+- Move finger adjustments to config so that different keyboards can have different values.
+- Make some define to make different versions for Pro Red and Pink as it seems to be more
+  sensitive with the Pinks.

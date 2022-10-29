@@ -35,11 +35,21 @@
 #define HOME_S LGUI_T(KC_S)
 #define HOME_T LSFT_T(KC_T)
 
+#define MOD_A LSFT_T(KC_A)
+#define MOD_Z LCTL_T(KC_Z)
+#define MOD_X LALT_T(KC_X)
+#define MOD_C LGUI_T(KC_C)
+
 // Right-hand home row mods
 #define HOME_N RSFT_T(KC_N)
 #define HOME_E RGUI_T(KC_E)
 #define HOME_I LALT_T(KC_I)
 #define HOME_O RCTL_T(KC_O)
+
+#define MOD_O LSFT_T(KC_O)
+#define MOD_SLH LCTL_T(KC_SLSH)
+#define MOD_DOT LALT_T(KC_DOT)
+#define MOD_COM LGUI_T(KC_COMM)
 
 #define SFT_G LSFT(KC_G)
 

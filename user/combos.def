@@ -10,17 +10,17 @@ COMB(WFP_CBR_PAIR_IN,    CURLYS,               KC_W, KC_F, KC_P)
 COMB(PB_PIPE,            KC_PIPE,              KC_P, KC_B)
 
 // R2
-COMB(RS_LPRN,            KC_LPRN,              HOME_R, HOME_S)
-COMB(ST_RPRN,            KC_RPRN,              HOME_S, HOME_T)
-SUBS(RT_PRN_PAIR,        "()",                 HOME_R, HOME_T)
-COMB(RST_PRN_PAIR_IN,    PARENS,               HOME_R, HOME_S, HOME_T)
+COMB(RS_LPRN,            KC_LPRN,              KC_R, KC_S)
+COMB(ST_RPRN,            KC_RPRN,              KC_S, KC_T)
+SUBS(RT_PRN_PAIR,        "()",                 KC_R, KC_T)
+COMB(RST_PRN_PAIR_IN,    PARENS,               KC_R, KC_S, KC_T)
 
 // R1
-COMB(XC_COPY,            LGUI(KC_C),           KC_X, KC_C)
-COMB(CD_PASTE,           LGUI(KC_V),           KC_C, KC_D)
-COMB(XD_CUT,             LGUI(KC_X),           KC_X, KC_D)
-COMB(XCD_PASTE_SFT,      LGUI(S(KC_V)),        KC_X, KC_C, KC_D)
-COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
+COMB(XC_COPY,            LGUI(KC_C),           MOD_X, MOD_C)
+COMB(CD_PASTE,           LGUI(KC_V),           MOD_C, KC_D)
+COMB(XD_CUT,             LGUI(KC_X),           MOD_X, KC_D)
+COMB(XCD_PASTE_SFT,      LGUI(S(KC_V)),        MOD_X, KC_C, KC_D)
+COMB(ZX_UNDO,            LGUI(KC_Z),           MOD_Z, MOD_X)
 
 // ==========
 // RIGHT_HAND
@@ -33,35 +33,35 @@ COMB(UY_QUOT,            S_QUOTE,              KC_U, KC_Y)
 COMB(LUY_SNAKE_SCREAM,   SNK_SCM,              KC_L, KC_U, KC_Y)
 
 // R2
-COMB(NE_ESC,             KC_ESC,               HOME_N,HOME_E)
-COMB(EI_TAB,             KC_TAB,               HOME_E,HOME_I)
-COMB(NI_EQL,             KC_EQL,               HOME_N,HOME_I)
+COMB(NE_ESC,             KC_ESC,               KC_N,KC_E)
+COMB(EI_TAB,             KC_TAB,               KC_E,KC_I)
+COMB(NI_EQL,             KC_EQL,               KC_N,KC_I)
 
 // R1
-COMB(HCOM_DQUOT,         KC_ENT,               KC_H, KC_COMM)
-SUBS(LTGT_ARROW,         "->",                 KC_COMM, KC_DOT)
+COMB(HCOM_DQUOT,         KC_ENT,               KC_H, MOD_COM)
+SUBS(LTGT_ARROW,         "->",                 MOD_COM, MOD_DOT)
 
 // Vertical
-COMB(VCB_LN,             S_QUOTE,              HOME_N, KC_L)
-COMB(VCB_NH,             D_QUOTE,              HOME_N, KC_H)
-COMB(VCB_UI,             KC_BSLS,              KC_U, HOME_I)
+COMB(VCB_LN,             S_QUOTE,              KC_N, KC_L)
+COMB(VCB_NH,             D_QUOTE,              KC_N, KC_H)
+COMB(VCB_UI,             KC_BSLS,              KC_U, KC_I)
 
 // Thumb
 // COMB(THUMB_M,            KC_PLUS,              RAI_BSP, KC_M)
-// COMB(THUMB_N,            KC_MINS,              RAI_BSP, HOME_N)
+// COMB(THUMB_N,            KC_MINS,              RAI_BSP, KC_N)
 // COMB(THUMB_H,            KC_UNDS,              RAI_BSP, KC_H)
 
 // ==========
 // BOTH
 // ==========
-COMB(HCB_TN,             CAPS,                 HOME_T, HOME_N)
+COMB(HCB_TN,             CAPS,                 KC_T, KC_N)
 
 // ==========
 // SWE
 // ==========
 
-COMB(SWE_AO,             SE_AO,                HOME_A, HOME_O)
-COMB(SWE_AE,             SE_AE,                HOME_A, HOME_E)
-COMB(SWE_OE,             SE_OE,                HOME_O, HOME_E)
+COMB(SWE_AO,             SE_AO,                MOD_A, MOD_O)
+COMB(SWE_AE,             SE_AE,                MOD_A, KC_E)
+COMB(SWE_OE,             SE_OE,                MOD_O, KC_E)
 
 // vim:ft=c

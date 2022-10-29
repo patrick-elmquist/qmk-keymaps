@@ -124,8 +124,18 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         // case THUMB_N:
         case NE_ESC:
-            id = timer_elapsed(non_combo_input_timer) > 200 ? '4' : '7';
-            term = timer_elapsed(non_combo_input_timer) > 200 ? 35 : 5;
+            // id = timer_elapsed(non_combo_input_timer) > 150 ? '4' : '7';
+            // term = timer_elapsed(non_combo_input_timer) > 150 ? 35 : 5;
+            id = '4';
+            term = 45;
+            // #ifdef CONSOLE_ENABLE
+            //     uprintf("COMBO: index: %u, id: %c, term: %u timer: %u\n",
+            //             index,
+            //             id,
+            //             term,
+            //             timer_elapsed(non_combo_input_timer)
+            //             );
+            // #endif
             break;
 
         // case THUMB_M:
@@ -152,23 +162,25 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     return term;
 }
 
-#define THUMB_EXTRA 45
-#define INDEX_EXTRA -25
-#define LONG_EXTRA 100
-#define RING_EXTRA 80
-#define PINKY_EXTRA 100
-
 // Tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_R:
         case HOME_I:
+        case MOD_X:
+        case MOD_DOT:
             return TAPPING_TERM + RING_EXTRA;
         case HOME_A:
         case HOME_O:
+        case MOD_A:
+        case MOD_O:
+        case MOD_Z:
+        case MOD_SLH:
             return TAPPING_TERM + PINKY_EXTRA;
         case HOME_S:
         case HOME_E:
+        case MOD_C:
+        case MOD_COM:
             return TAPPING_TERM + LONG_EXTRA;
         case HOME_T:
         case HOME_N:
@@ -177,6 +189,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM + THUMB_EXTRA;
         default:
             return TAPPING_TERM;
+    }
+}
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LOW_SPC:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+        default:
+            // Do not select the hold action when another key is tapped.
+            return false;
     }
 }
 
@@ -190,6 +213,14 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case HOME_E:
         case HOME_I:
         case HOME_O:
+        case MOD_A:
+        case MOD_Z:
+        case MOD_X:
+        case MOD_C:
+        case MOD_COM:
+        case MOD_DOT:
+        case MOD_SLH:
+        case MOD_O:
             return true;
         default:
             return false;
@@ -206,6 +237,14 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
         case HOME_E:
         case HOME_I:
         case HOME_O:
+        case MOD_A:
+        case MOD_Z:
+        case MOD_X:
+        case MOD_C:
+        case MOD_COM:
+        case MOD_DOT:
+        case MOD_SLH:
+        case MOD_O:
             // Do not force the mod-tap key press to be handled as a modifier
             // if any other key was pressed while the mod-tap key is held down.
             return true;
@@ -216,8 +255,30 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // case MOD_A:
+            // Immediately select the hold action when another key is pressed.
+            // return true;
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+    #ifdef CONSOLE_ENABLE
+    uprintf("key:0x%04X, row:%u, col:%u, layer:%u, down:%b, mods:0x%02X, osm:0x%02X, count:%u\n",
+        keycode,
+        record->event.key.row,
+        record->event.key.col,
+        get_highest_layer(layer_state),
+        record->event.pressed,
+        get_mods(),
+        get_oneshot_mods(),
+        record->tap.count
+        );
+    #endif
 
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
     update_swapper(&sw_app_active, KC_LGUI, KC_GRV, SW_APP, keycode, record);
@@ -243,6 +304,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
 
     switch (keycode) {
+        case NE_ESC:
+            if (!record->event.pressed) {
+                non_combo_input_timer += 151;
+            }
+            return true;
         case KC_BSPC: {
             // Initialize a boolean variable that keeps track
             // of the delete key status: registered or not?
@@ -253,7 +319,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (mod_state & MOD_MASK_SHIFT) {
                     // First temporarily canceling both shifts so that
                     // shift isn't applied to the KC_DEL keycode
-                    uprintf("Delete pressed");
                     del_mods(MOD_MASK_SHIFT);
                     register_code(KC_DEL);
                     // Update the boolean variable to reflect the status of KC_DEL
