@@ -90,14 +90,15 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     char id;
     uint16_t term;
     switch (index) {
+        case WP_CBR_PAIR:
         case WF_LCBR:
         case FP_RCBR:
             id = timer_elapsed(non_combo_input_timer) > 350 ? '1' : '2';
             term = timer_elapsed(non_combo_input_timer) > 350 ? 25 : 5;
+            term = 35;
             break;
 
-        case WP_CBR_PAIR:
-
+        case RAI_ENT:
         case RS_LPRN:
         case ST_RPRN:
         case RT_PRN_PAIR:
@@ -221,6 +222,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case MOD_DOT:
         case MOD_SLH:
         case MOD_O:
+        case RAI_ENT:
+        case LOW_SPC:
             return true;
         default:
             return false;
