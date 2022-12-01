@@ -40,7 +40,6 @@ SRC += ./pket.c \
        ./features/oneshot.c \
        ./features/swapper.c \
        ./features/casemodes.c \
-       ./features/repeat.c \
        ./oled.c \
 
 EXTRAFLAGS += -flto

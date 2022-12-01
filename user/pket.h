@@ -7,7 +7,6 @@
 #include "oled.h"
 #include "features/oneshot.h"
 #include "features/swapper.h"
-#include "features/repeat.h"
 #include "features/casemodes.h"
 
 // 5 column
