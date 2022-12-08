@@ -11,12 +11,17 @@
 
 // 5 column
 #define ________________COLEMAK_L1_5_______________ KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define ________________COLEMAK_L2_5_______________ MOD_A,   KC_R,    KC_S,    KC_T,    KC_G
-#define ________________COLEMAK_L3_5_______________ MOD_Z,   MOD_X,   MOD_C,   KC_D,    KC_V
+#define ________________COLEMAK_L2_5_______________ HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G
+#define ________________COLEMAK_L3_5_______________ KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
 
 #define ________________COLEMAK_R1_5_______________ KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define ________________COLEMAK_R2_5_______________ KC_M,    KC_N,    KC_E,    KC_I,    MOD_O
-#define ________________COLEMAK_R3_5_______________ KC_K,    KC_H,    MOD_COM, MOD_DOT, MOD_SLH
+#define ________________COLEMAK_R2_5_______________ KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O
+#define ________________COLEMAK_R3_5_______________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+
+
+
+
+
 
 #define ________________LOWER__L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define ________________LOWER__L2_5________________ OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, KC_GRV
@@ -26,13 +31,31 @@
 #define ________________LOWER__R2_5________________ KC_PLUS, KC_MINS, KC_SLSH, KC_COMM, KC_SCLN
 #define ________________LOWER__R3_5________________ KC_EQL,  KC_UNDS, KC_COMM, KC_DOT,  KC_SLSH
 
+#define ________________LOWER2_L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
+#define ________________LOWER2_L2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ________________LOWER2_L3_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+#define ________________LOWER2_R1_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ________________LOWER2_R2_5________________ KC_CIRC, KC_AMPR, KC_ASTR, XXXXXXX, XXXXXXX
+#define ________________LOWER2_R3_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
 #define ________________RAISE__L1_5________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define ________________RAISE__L2_5________________ XXXXXXX, KC_LBRC, KC_LPRN, KC_LCBR, SFT_G
-#define ________________RAISE__L3_5________________ XXXXXXX, KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX
+#define ________________RAISE__L2_5________________ KC_LT,   KC_PERC, KC_LPRN, KC_LCBR, KC_LBRC
+#define ________________RAISE__L3_5________________ KC_GT,   KC_DLR,  KC_RPRN, KC_RCBR, KC_RBRC
 
 #define ________________RAISE__R1_5________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define ________________RAISE__R2_5________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN
+#define ________________RAISE__R2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ________________RAISE__R3_5________________ XXXXXXX, KC_UNDS, _______, _______, _______
+
+#define ________________NAV_L1_5___________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define ________________NAV_L2_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ________________NAV_L3_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+#define ________________NAV_R1_5___________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define ________________NAV_R2_5___________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX
+#define ________________NAV_R3_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+
 
 #define ________________SYSTEM_L1_5________________ QUIT,    CLOSE,   SW_WIN,  SW_APP,  ITERM
 #define ________________SYSTEM_L2_5________________ OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, ALFRED
@@ -49,6 +72,18 @@
 #define ________________ADJUST_R1_5________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 #define ________________ADJUST_R2_5________________ _______, _______, _______, KC_F11,  KC_F12
 #define ________________ADJUST_R3_5________________ _______, _______, _______, _______, _______
+
+#define ___THUMB_LEFT___ SYSTEM,  LOW_SPC
+#define ___THUMB_RIGHT__ RAI_ENT, NAV_BSP
+
+
+
+
+
+
+
+
+
 
 // 6 column
 #define _____________________COLEMAK_L1_____________________ KC_TAB,  ________________COLEMAK_L1_5_______________

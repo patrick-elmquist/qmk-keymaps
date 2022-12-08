@@ -5,7 +5,7 @@ enum layer_number {
     _QWERTY,
     _LOWER,
     _RAISE,
-    _NUM,
+    _NAV,
     _SYSTEM,
     _ADJUST
 };

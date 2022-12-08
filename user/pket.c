@@ -95,7 +95,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case FP_RCBR:
             id = timer_elapsed(non_combo_input_timer) > 350 ? '1' : '2';
             term = timer_elapsed(non_combo_input_timer) > 350 ? 25 : 5;
-            term = 35;
+            term = 45;
             break;
 
         case RAI_ENT:
@@ -109,7 +109,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case LUY_SNAKE_SCREAM:
             id = '5';
-            term = 25;
+            term = 30;
             break;
 
         case VCB_LN:
@@ -120,7 +120,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case EI_TAB:
         case NI_EQL:
             id = '3';
-            term = 30;
+            term = 40;
             break;
 
         // case THUMB_N:
@@ -128,7 +128,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
             // id = timer_elapsed(non_combo_input_timer) > 150 ? '4' : '7';
             // term = timer_elapsed(non_combo_input_timer) > 150 ? 35 : 5;
             id = '4';
-            term = 45;
+            term = 50;
             // #ifdef CONSOLE_ENABLE
             //     uprintf("COMBO: index: %u, id: %c, term: %u timer: %u\n",
             //             index,
@@ -146,7 +146,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case SWE_AE:
         case SWE_OE:
             id = '8';
-            term = 40;
+            term = 45;
             break;
 
         case LTGT_ARROW:
@@ -156,7 +156,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         default:
             id = '6';
-            term = 35;
+            term = 45;
             break;
     }
     update_combo_status(term, id);
@@ -196,6 +196,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LOW_SPC:
+        case RAI_ENT:
+        case RAI_BSP:
+        case NAV_BSP:
             // Immediately select the hold action when another key is tapped.
             return true;
         default:

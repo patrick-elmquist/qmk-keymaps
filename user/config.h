@@ -18,10 +18,10 @@
 #define SPLIT_MODS_ENABLE
 
 #define THUMB_EXTRA 45
-#define INDEX_EXTRA -25
-#define LONG_EXTRA 100
-#define RING_EXTRA 80
-#define PINKY_EXTRA -20
+#define INDEX_EXTRA 0
+#define LONG_EXTRA 0
+#define RING_EXTRA 0
+#define PINKY_EXTRA 0
 
 // Should reduce the total firmware footprint according to some blog post
 #define DISABLE_LEADER

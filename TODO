@@ -12,3 +12,33 @@ TODO:
 - Move finger adjustments to config so that different keyboards can have different values.
 - Make some define to make different versions for Pro Red and Pink as it seems to be more
   sensitive with the Pinks.
+
+SYMBOLS
+1234567890
+!@#$%^&*
++-_/\|`~=
+<>(){}[]"'
+
+NAV
+hjkl
+
+ACTIONS
+Esc
+Tab
+Backspace
+Alt + backspace
+Enter
+Caps
+Screaming snake
+(Numword)
+(Snake, possibly leader key?)
+
+APPS
+Alfred
+iTerm
+Window switcher
+Application switch
+Window placement, left/right, full/restore, thirds
+
+OTHER
+In VIM setup bindings for sp,vsp and similar, will be easier with Ctrl back on home row
