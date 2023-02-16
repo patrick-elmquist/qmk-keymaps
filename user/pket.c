@@ -310,6 +310,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
 
     switch (keycode) {
+        case HOME_T:
+            if (record->event.pressed && record->tap.count > 0) {
+                if (get_mods() & MOD_BIT(KC_LGUI)) {
+                    unregister_mods(MOD_BIT(KC_LGUI));
+                    tap_code(KC_S);
+                    tap_code(KC_T);
+                    add_mods(MOD_BIT(KC_LGUI));
+                    return false;
+                }
+                if (get_mods() & MOD_BIT(KC_LCTL)) {
+                    unregister_mods(MOD_BIT(KC_LCTL));
+                    tap_code(KC_A);
+                    tap_code(KC_T);
+                    add_mods(MOD_BIT(KC_LCTL));
+                    return false;
+                }
+            }
+        case HOME_R:
+            if (record->event.pressed && record->tap.count > 0) {
+                if (get_mods() & MOD_BIT(KC_LCTL)) {
+                    unregister_mods(MOD_BIT(KC_LCTL));
+                    tap_code(KC_A);
+                    tap_code(KC_R);
+                    add_mods(MOD_BIT(KC_LCTL));
+                    return false;
+                }
+            }
+            return true;
+
+        case HOME_E:
+            if (record->event.pressed && record->tap.count > 0) {
+                if (get_mods() & MOD_BIT(KC_RSFT)) {
+                    unregister_mods(MOD_BIT(KC_RSFT));
+                    tap_code(KC_N);
+                    tap_code(KC_E);
+                    add_mods(MOD_BIT(KC_RSFT));
+                    return false;
+                }
+            }
+            return true;
+
+        case HOME_N:
+            if (record->event.pressed && record->tap.count > 0) {
+                if (get_mods() & MOD_BIT(KC_RGUI)) {
+                    unregister_mods(MOD_BIT(KC_RGUI));
+                    tap_code(KC_E);
+                    tap_code(KC_N);
+                    add_mods(MOD_BIT(KC_RGUI));
+                    return false;
+                }
+                if (get_mods() & MOD_BIT(KC_RCTL)) {
+                    unregister_mods(MOD_BIT(KC_RCTL));
+                    tap_code(KC_O);
+                    tap_code(KC_N);
+                    add_mods(MOD_BIT(KC_RCTL));
+                    return false;
+                }
+            }
+            return true;
+
         case NE_ESC:
             if (!record->event.pressed) {
                 non_combo_input_timer += 151;

@@ -19,12 +19,21 @@
 #define ________________COLEMAK_R3_5_______________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
 
+#define ________________HANDS_DOWN_L1_5____________ KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
+#define ________________HANDS_DOWN_L2_5____________ HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G
+#define ________________HANDS_DOWN_L3_5____________ KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+
+#define ________________HANDS_DOWN_R1_5____________ KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define ________________HANDS_DOWN_R2_5____________ KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O
+#define ________________HANDS_DOWN_R3_5____________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+
+
 
 
 
 
 #define ________________LOWER__L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
-#define ________________LOWER__L2_5________________ OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, KC_GRV
+#define ________________LOWER__L2_5________________ _______, _______, _______, _______, KC_GRV
 #define ________________LOWER__L3_5________________ KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
 
 #define ________________LOWER__R1_5________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
@@ -61,7 +70,7 @@
 #define ________________SYSTEM_L2_5________________ OS_LCTL, OS_LALT, OS_LGUI, OS_LSFT, ALFRED
 #define ________________SYSTEM_L3_5________________ _______, _______, _______, _______, _______
 
-#define ________________SYSTEM_R1_5________________ _______, _______, WIN_MAX, BACK,    FORWARD
+#define ________________SYSTEM_R1_5________________ KC_LSFT, _______, WIN_MAX, BACK,    FORWARD
 #define ________________SYSTEM_R2_5________________ _______, WIN_LFT, WIN_CEN, WIN_RGT, _______
 #define ________________SYSTEM_R3_5________________ _______, WIN_RES, _______, _______, _______
 
