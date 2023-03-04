@@ -71,7 +71,6 @@ void render_default_layer_state(void) {
 
     oled_write_P(PSTR("$"), false);
     switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
         case _COLEMAK:
             oled_write_P(blink ? PSTR("_\n") : PSTR("\n"), false);
             return;

@@ -168,20 +168,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_R:
         case HOME_I:
-        case MOD_X:
-        case MOD_DOT:
             return TAPPING_TERM + RING_EXTRA;
         case HOME_A:
         case HOME_O:
-        case MOD_A:
-        case MOD_O:
-        case MOD_Z:
-        case MOD_SLH:
             return TAPPING_TERM + PINKY_EXTRA;
         case HOME_S:
         case HOME_E:
-        case MOD_C:
-        case MOD_COM:
             return TAPPING_TERM + LONG_EXTRA;
         case HOME_T:
         case HOME_N:
@@ -217,14 +209,6 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_E:
         case HOME_I:
         case HOME_O:
-        case MOD_A:
-        case MOD_Z:
-        case MOD_X:
-        case MOD_C:
-        case MOD_COM:
-        case MOD_DOT:
-        case MOD_SLH:
-        case MOD_O:
         case RAI_ENT:
         case LOW_SPC:
             return 0;
@@ -245,14 +229,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
                 case HOME_E:
                 case HOME_I:
                 case HOME_O:
-                case MOD_A:
-                case MOD_Z:
-                case MOD_X:
-                case MOD_C:
-                case MOD_COM:
-                case MOD_DOT:
-                case MOD_SLH:
-                case MOD_O:
                     // Do not force the mod-tap key press to be handled as a modifier
                     // if any other key was pressed while the mod-tap key is held down.
                     return false;
@@ -260,6 +236,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
                     // Force the mod-tap key press to be handled as a modifier if any
                     // other key was pressed while the mod-tap key is held down.
                     return true;
+            }
         default:
             // Do not select the hold action when another key is pressed.
             return false;
