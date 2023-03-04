@@ -19,13 +19,13 @@
 #define ________________COLEMAK_R3_5_______________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
 
-#define ________________HANDS_DOWN_L1_5____________ KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define ________________HANDS_DOWN_L2_5____________ HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G
-#define ________________HANDS_DOWN_L3_5____________ KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+#define ________________HANDS_DOWN_L1_5____________ KC_Q,    KC_C,    KC_H,    KC_P,    KC_V
+#define ________________HANDS_DOWN_L2_5____________ KC_R,    KC_S,    KC_N,    KC_T,    KC_G
+#define ________________HANDS_DOWN_L3_5____________ KC_X,    KC_M,    KC_L,    KC_D,    KC_B
 
-#define ________________HANDS_DOWN_R1_5____________ KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define ________________HANDS_DOWN_R2_5____________ KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O
-#define ________________HANDS_DOWN_R3_5____________ KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+#define ________________HANDS_DOWN_R1_5____________ KC_K,    KC_Y,    KC_U,    KC_Y,    KC_SCLN
+#define ________________HANDS_DOWN_R2_5____________ KC_W,    KC_U,    KC_E,    KC_I,    KC_A
+#define ________________HANDS_DOWN_R3_5____________ KC_Z,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH
 
 
 
@@ -79,8 +79,8 @@
 #define ________________ADJUST_L3_5________________ QK_BOOT, _______, _______, KC_MUTE, KC_VOLD
 
 #define ________________ADJUST_R1_5________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
-#define ________________ADJUST_R2_5________________ _______, _______, _______, KC_F11,  KC_F12
-#define ________________ADJUST_R3_5________________ _______, _______, _______, _______, _______
+#define ________________ADJUST_R2_5________________ DFL_COL, _______, _______, KC_F11,  KC_F12
+#define ________________ADJUST_R3_5________________ DFL_HDR, _______, _______, _______, _______
 
 #define ___THUMB_LEFT___ SYSTEM,  LOW_SPC
 #define ___THUMB_RIGHT__ RAI_ENT, NAV_BSP

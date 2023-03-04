@@ -2,7 +2,7 @@
 
 enum layer_number {
     _COLEMAK = 0,
-    _QWERTY,
+    _HANDS_DOWN,
     _LOWER,
     _RAISE,
     _NAV,
