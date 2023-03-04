@@ -207,7 +207,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_A:
         case HOME_R:
@@ -227,45 +227,39 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         case MOD_O:
         case RAI_ENT:
         case LOW_SPC:
-            return true;
+            return 0;
         default:
-            return false;
-    }
-}
-
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case HOME_A:
-        case HOME_R:
-        case HOME_S:
-        case HOME_T:
-        case HOME_N:
-        case HOME_E:
-        case HOME_I:
-        case HOME_O:
-        case MOD_A:
-        case MOD_Z:
-        case MOD_X:
-        case MOD_C:
-        case MOD_COM:
-        case MOD_DOT:
-        case MOD_SLH:
-        case MOD_O:
-            // Do not force the mod-tap key press to be handled as a modifier
-            // if any other key was pressed while the mod-tap key is held down.
-            return true;
-        default:
-            // Force the mod-tap key press to be handled as a modifier if any
-            // other key was pressed while the mod-tap key is held down.
-            return false;
+            return QUICK_TAP_TERM;
     }
 }
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case MOD_A:
-            // Immediately select the hold action when another key is pressed.
-            // return true;
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+            switch (keycode) {
+                case HOME_A:
+                case HOME_R:
+                case HOME_S:
+                case HOME_T:
+                case HOME_N:
+                case HOME_E:
+                case HOME_I:
+                case HOME_O:
+                case MOD_A:
+                case MOD_Z:
+                case MOD_X:
+                case MOD_C:
+                case MOD_COM:
+                case MOD_DOT:
+                case MOD_SLH:
+                case MOD_O:
+                    // Do not force the mod-tap key press to be handled as a modifier
+                    // if any other key was pressed while the mod-tap key is held down.
+                    return false;
+                default:
+                    // Force the mod-tap key press to be handled as a modifier if any
+                    // other key was pressed while the mod-tap key is held down.
+                    return true;
         default:
             // Do not select the hold action when another key is pressed.
             return false;

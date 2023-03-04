@@ -17,21 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-// Let the keyboard decide primary/secondary
-// TODO investigate if this is actually needed, doesn't seem like it...
-// #define SPLIT_USB_DETECT
-
-// Seems to be a lot of accidental mods with the undefs...
-// #undef TAPPING_TERM_PER_KEY
-// #undef TAPPING_FORCE_HOLD_PER_KEY
-// #undef IGNORE_MOD_TAP_INTERRUPT_PER_KEY
-
-// Pick good defaults for enabling homerow modifiers
-// #define TAPPING_TERM 200
 #define PERMISSIVE_HOLD
-// #define HOLD_ON_OTHER_KEY_PRESS
-#define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD
+#define HOLD_ON_OTHER_KEY_PRESS
+#define QUICK_TAP_TERM 0
 
 #undef TAPPING_TERM
 #define TAPPING_TERM 170
