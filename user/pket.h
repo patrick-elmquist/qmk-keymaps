@@ -23,8 +23,8 @@
 #define ________________HANDS_DOWN_L2_5____________ KC_R,    KC_S,    KC_N,    KC_T,    KC_G
 #define ________________HANDS_DOWN_L3_5____________ KC_X,    KC_M,    KC_L,    KC_D,    KC_B
 
-#define ________________HANDS_DOWN_R1_5____________ KC_K,    KC_Y,    KC_U,    KC_Y,    KC_SCLN
-#define ________________HANDS_DOWN_R2_5____________ KC_W,    KC_U,    KC_E,    KC_I,    KC_A
+#define ________________HANDS_DOWN_R1_5____________ KC_K,    KC_Y,    KC_O,    KC_J,    KC_SCLN
+#define ________________HANDS_DOWN_R2_5____________ KC_W,    KC_U,    KC_E,    KC_A,    KC_I
 #define ________________HANDS_DOWN_R3_5____________ KC_Z,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH
 
 
