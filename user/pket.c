@@ -119,6 +119,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case UY_QUOT:
         case EI_TAB:
         case NI_EQL:
+        case MN_SNAKE_SCREAM:
             id = '3';
             term = 40;
             break;

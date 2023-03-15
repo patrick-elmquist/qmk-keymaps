@@ -36,6 +36,7 @@ COMB(LUY_SNAKE_SCREAM,   SNK_SCM,              KC_L, KC_U, KC_Y)
 COMB(NE_ESC,             KC_ESC,               HOME_N, HOME_E)
 COMB(EI_TAB,             KC_TAB,               HOME_E, HOME_I)
 COMB(NI_EQL,             KC_EQL,               HOME_N, HOME_I)
+COMB(MN_SNAKE_SCREAM,    SNK_SCM,              KC_M, HOME_N)
 
 // R1
 COMB(HCOM_DQUOT,         KC_ENT,               KC_H, KC_COMM)
