@@ -46,11 +46,6 @@ COMB(VCB_LN,             S_QUOTE,              HOME_N, KC_L)
 COMB(VCB_NH,             D_QUOTE,              HOME_N, KC_H)
 COMB(VCB_UI,             KC_BSLS,              KC_U, HOME_I)
 
-// Thumb
-// COMB(THUMB_M,            KC_PLUS,              RAI_BSP, KC_M)
-// COMB(THUMB_N,            KC_MINS,              RAI_BSP, KC_N)
-// COMB(THUMB_H,            KC_UNDS,              RAI_BSP, KC_H)
-
 // ==========
 // BOTH
 // ==========
