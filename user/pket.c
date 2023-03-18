@@ -9,6 +9,11 @@ oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_cmd_state = os_up_unqueued;
 
+// Used for repeat key
+uint8_t mod_state;
+uint8_t oneshot_mod_state;
+uint16_t last_keycode;
+
 static uint16_t non_combo_input_timer = 0;
 uint8_t mod_state;
 
@@ -119,7 +124,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case UY_QUOT:
         case EI_TAB:
         case NI_EQL:
-        case MN_SNAKE_SCREAM:
             id = '3';
             term = 40;
             break;
@@ -154,6 +158,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case XCD_PASTE_SFT:
         case WFP_CBR_PAIR_IN:
         case RST_PRN_PAIR_IN:
+        case NEI_ENT:
 
         default:
             id = '6';
@@ -244,6 +249,53 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+inline uint8_t get_tap_kc(uint16_t dual_role_key) {
+    // Used to extract the basic tapping keycode from a dual-role key.
+    // Example: get_tap_kc(MT(MOD_RSFT, KC_E)) == KC_E
+    return dual_role_key & 0xFF;
+}
+
+uint16_t last_keycode = KC_NO;
+static void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
+    static uint8_t last_modifier = 0;
+    if (keycode != REPEAT) { // change this to the modtap once figured out
+        // Early return when holding down a pure layer key
+        // to retain modifiers
+        switch (keycode) {
+            case QK_DEF_LAYER ... QK_DEF_LAYER_MAX:
+            case QK_MOMENTARY ... QK_MOMENTARY_MAX:
+            case QK_LAYER_MOD ... QK_LAYER_MOD_MAX:
+            case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
+            case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
+            case QK_TO ... QK_TO_MAX:
+            case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
+                return;
+        }
+        last_modifier = oneshot_mod_state | mod_state;
+        switch (keycode) {
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                if (record->event.pressed) {
+                    last_keycode = get_tap_kc(keycode);
+                }
+                break;
+            default:
+                if (record->event.pressed) {
+                    last_keycode = keycode;
+                }
+                break;
+        }
+    } else { // keycode == REPEAT
+        if (record->event.pressed) {
+            register_mods(last_modifier);
+            register_code16(last_keycode);
+        } else {
+            unregister_code16(last_keycode);
+            unregister_mods(last_modifier);
+        }
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
     uprintf("key:0x%04X, row:%u, col:%u, layer:%u, down:%b, mods:0x%02X, osm:0x%02X, count:%u\n",
@@ -257,6 +309,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         record->tap.count
         );
     #endif
+
+    process_repeat_key(keycode, record);
 
     update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
     update_swapper(&sw_app_active, KC_LGUI, KC_GRV, SW_APP, keycode, record);

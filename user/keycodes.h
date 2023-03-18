@@ -24,6 +24,7 @@
 
 #define LOW_ENT LT(_LOWER, KC_ENT)
 #define RAI_ENT LT(_RAISE, KC_ENT)
+#define SYS_REP LT(_SYSTEM, REPEAT)
 #define RAI_BSP LT(_RAISE, KC_BSPC)
 #define NAV_BSP LT(_NAV, KC_BSPC)
 #define LOW_SPC LT(_LOWER, KC_SPC)
@@ -63,6 +64,8 @@ enum custom_keycodes {
     CAMEL,
     SNAKE,
     SNK_SCM,
+
+    REPEAT,
 
     SE_AO,
     SE_AE,

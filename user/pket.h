@@ -84,7 +84,7 @@
 #define ________________ADJUST_R2_5________________ DFL_COL, _______, _______, KC_F11,  KC_F12
 #define ________________ADJUST_R3_5________________ DFL_HDR, _______, _______, _______, _______
 
-#define ___THUMB_LEFT___ SYSTEM,  LOW_SPC
+#define ___THUMB_LEFT___ SYS_REP, LOW_SPC
 #define ___THUMB_RIGHT__ RAI_ENT, NAV_BSP
 
 
