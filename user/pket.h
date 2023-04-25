@@ -26,6 +26,14 @@
 #define ________________HANDS_DOWN_R2_5____________ KC_W,    KC_U,    KC_E,    KC_I,    KC_A
 #define ________________HANDS_DOWN_R3_5____________ KC_Z,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH
 
+#define ________________CANARY_L1_5________________ KC_W,    KC_L,    KC_Y,    KC_P,    KC_B
+#define ________________CANARY_L2_5________________ KC_C,    KC_R,    KC_S,    KC_T,    KC_G
+#define ________________CANARY_L3_5________________ KC_Q,    KC_J,    KC_V,    KC_D,    KC_K
+
+#define ________________CANARY_R1_5________________ KC_Z,    KC_F,    KC_O,    KC_U,    KC_SCLN
+#define ________________CANARY_R2_5________________ KC_M,    KC_N,    KC_E,    KC_I,    KC_A
+#define ________________CANARY_R3_5________________ KC_X,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+
 #define ________________LOWER__L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define ________________LOWER__L2_5________________ _______, _______, _______, _______, KC_GRV
 #define ________________LOWER__L3_5________________ KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
@@ -82,10 +90,10 @@
 
 #define ________________ADJUST_R1_5________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 #define ________________ADJUST_R2_5________________ DFL_COL, _______, _______, KC_F11,  KC_F12
-#define ________________ADJUST_R3_5________________ DFL_HDR, _______, _______, _______, _______
+#define ________________ADJUST_R3_5________________ DFL_HDR, DFL_CRY, _______, _______, _______
 
 #define ___THUMB_LEFT___ SYS_REP, LOW_SPC
-#define ___THUMB_RIGHT__ RAI_ENT, NAV_BSP
+#define ___THUMB_RIGHT__ RAI_ESC, NAV_BSP
 
 
 

@@ -18,7 +18,7 @@ static uint16_t non_combo_input_timer = 0;
 uint8_t mod_state;
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _SYSTEM, _NAV, _ADJUST);
 }
 
 // Oneshot functions
