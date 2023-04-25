@@ -67,8 +67,8 @@
 #define ________________RAISE2_R3_5________________ XXXXXXX, KC_UNDS, _______, _______, _______
 
 #define ________________NAV_L1_5___________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define ________________NAV_L2_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ________________NAV_L3_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ________________NAV_L2_5___________________ KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_SCLN
+#define ________________NAV_L3_5___________________ KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_COMM
 
 #define ________________NAV_R1_5___________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
 #define ________________NAV_R2_5___________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX
@@ -95,6 +95,8 @@
 #define ___THUMB_LEFT___ SYS_REP, LOW_SPC
 #define ___THUMB_RIGHT__ RAI_ESC, NAV_BSP
 
+#define _______THUMB_LEFT________ _______, SYS_REP, LOW_SPC
+#define _______THUMB_RIGHT_______ RAI_ENT, NAV_BSP, _______
 
 
 

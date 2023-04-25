@@ -29,6 +29,7 @@
 #define RAI_BSP LT(_RAISE, KC_BSPC)
 #define NAV_BSP LT(_NAV, KC_BSPC)
 #define LOW_SPC LT(_LOWER, KC_SPC)
+#define LOW_TAB LT(_LOWER, KC_TAB)
 #define RAI_ESC LT(_RAISE, KC_ESC)
 #define CTL_BSP LCTL_T(KC_BSPC)
 
