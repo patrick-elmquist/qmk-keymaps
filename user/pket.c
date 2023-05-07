@@ -298,12 +298,12 @@ static void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
-    uprintf("key:0x%04X, row:%u, col:%u, layer:%u, down:%b, mods:0x%02X, osm:0x%02X, count:%u\n",
+    uprintf("key:0x%04X, row:%u, col:%u, layer:%u, down:%s, mods:0x%02X, osm:0x%02X, count:%u\n",
         keycode,
         record->event.key.row,
         record->event.key.col,
         get_highest_layer(layer_state),
-        record->event.pressed,
+        record->event.pressed ? "true" : "false",
         get_mods(),
         get_oneshot_mods(),
         record->tap.count

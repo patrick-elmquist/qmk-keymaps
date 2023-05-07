@@ -4,6 +4,7 @@ A user repository with my keymaps for QMK keyboards.
 I posted a guide for how to set this up: [Post@Medium](https://medium.com/@patrick.elmquist/separate-keymap-repo-for-qmk-136ff5a419bd)
 
 Keyboards:
+- Totem / Choc Pink (no image)
 - Ferris Sweep / Choc Pink
 - Ferris Sweep / Choc Pro Red
 - Kyria / Gateron Yellow

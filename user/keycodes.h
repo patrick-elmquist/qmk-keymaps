@@ -48,6 +48,7 @@
 #define DFL_COL DF(_COLEMAK)
 #define DFL_HDR DF(_HANDS_DOWN)
 #define DFL_CRY DF(_CANARY)
+#define DFL_GAL DF(_GALLIUM)
 
 enum custom_keycodes {
     OS_LCTL = SAFE_RANGE,
