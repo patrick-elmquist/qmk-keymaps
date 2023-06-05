@@ -175,6 +175,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_R:
         case HOME_I:
             return TAPPING_TERM + RING_EXTRA;
+        case CNRY_C:
+        case CNRY_A:
         case HOME_A:
         case HOME_O:
             return TAPPING_TERM + PINKY_EXTRA;
@@ -215,6 +217,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_E:
         case HOME_I:
         case HOME_O:
+        case CNRY_C:
+        case CNRY_A:
         case RAI_ENT:
         case LOW_SPC:
             return 0;
@@ -235,6 +239,8 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
                 case HOME_E:
                 case HOME_I:
                 case HOME_O:
+                case CNRY_C:
+                case CNRY_A:
                     // Do not force the mod-tap key press to be handled as a modifier
                     // if any other key was pressed while the mod-tap key is held down.
                     return false;
@@ -347,6 +353,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 if (get_mods() & MOD_BIT(KC_LCTL)) {
                     unregister_mods(MOD_BIT(KC_LCTL));
+                    // TODO this will be an issue with Canary as A has moved
                     tap_code(KC_A);
                     tap_code(KC_T);
                     add_mods(MOD_BIT(KC_LCTL));
@@ -388,6 +395,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 if (get_mods() & MOD_BIT(KC_RCTL)) {
                     unregister_mods(MOD_BIT(KC_RCTL));
+                    // TODO this will be an issue with Canary as O has moved
                     tap_code(KC_O);
                     tap_code(KC_N);
                     add_mods(MOD_BIT(KC_RCTL));
@@ -396,11 +404,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
 
-        case NE_ESC:
-            if (!record->event.pressed) {
-                non_combo_input_timer += 151;
-            }
-            return true;
         case KC_BSPC: {
             // Initialize a boolean variable that keeps track
             // of the delete key status: registered or not?

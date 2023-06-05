@@ -1,3 +1,6 @@
+// TODO need to add combos based on Canary layout and allow/disallow based on which
+//      which layer is enable
+//      https://github.com/ingka-group-digital/IKEAApp-android/pull/3452
 // ==========
 // LEFT_HAND
 // ==========
@@ -60,4 +63,7 @@ COMB(SWE_AO,             SE_AO,                HOME_A, HOME_O)
 COMB(SWE_AE,             SE_AE,                HOME_A, HOME_E)
 COMB(SWE_OE,             SE_OE,                HOME_O, HOME_E)
 
+COMB(SWE_AO,             SE_AO,                CNRY_A, KC_O)
+COMB(SWE_AE,             SE_AE,                CNRY_A, HOME_E)
+COMB(SWE_OE,             SE_OE,                KC_O, HOME_E)
 // vim:ft=c

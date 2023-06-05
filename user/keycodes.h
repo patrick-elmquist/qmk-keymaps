@@ -45,6 +45,12 @@
 #define HOME_I LALT_T(KC_I)
 #define HOME_O RCTL_T(KC_O)
 
+// Left-hand home row mods Canary
+#define CNRY_C LCTL_T(KC_C)
+
+// Right-hand home row mods Canary
+#define CNRY_A RCTL_T(KC_A)
+
 #define DFL_COL DF(_COLEMAK)
 #define DFL_HDR DF(_HANDS_DOWN)
 #define DFL_CRY DF(_CANARY)

@@ -4,5 +4,5 @@
 	branch = master
 [submodule "qmk-config-totem"]
 	path = qmk-config-totem
-	url = https://github.com/GEIGEIGEIST/qmk-config-totem.git
+	url = https://github.com/patrick-elmquist/qmk-config-totem.git
 	branch = main
