@@ -91,6 +91,23 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     return true;
 }
 
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    bool is_canary = layer_state_is(_CANARY);
+
+    switch (combo_index) {
+        case CRY_COPY:
+        case CRY_PASTE:
+        case CRY_CUT:
+        case CRY_UNDO:
+        case CRY_SWE_AO:
+        case CRY_SWE_AE:
+        case CRY_SWE_OE:
+            return is_canary;
+    }
+
+    return is_canary;
+}
+
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     char id;
     uint16_t term;
@@ -110,6 +127,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case XC_COPY:
         case CD_PASTE:
+        case CRY_COPY:
+        case CRY_PASTE:
         case LU_QUES_DOT:
 
         case LUY_SNAKE_SCREAM:
@@ -121,6 +140,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VCB_NH:
         case XD_CUT:
         case ZX_UNDO:
+        case CRY_CUT:
+        case CRY_UNDO:
         case UY_QUOT:
         case EI_TAB:
         case NI_EQL:
@@ -150,6 +171,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case SWE_AO:
         case SWE_AE:
         case SWE_OE:
+        case CRY_SWE_AO:
+        case CRY_SWE_AE:
+        case CRY_SWE_OE:
             id = '8';
             term = 45;
             break;
@@ -351,13 +375,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     add_mods(MOD_BIT(KC_LGUI));
                     return false;
                 }
-                if (get_mods() & MOD_BIT(KC_LCTL)) {
-                    unregister_mods(MOD_BIT(KC_LCTL));
-                    // TODO this will be an issue with Canary as A has moved
-                    tap_code(KC_A);
-                    tap_code(KC_T);
-                    add_mods(MOD_BIT(KC_LCTL));
-                    return false;
+                if (layer_state_is(_CANARY)) {
+                    // TODO evalutate if a version of this is needed for Canary
+                    if (get_mods() & MOD_BIT(KC_LCTL)) {
+                        unregister_mods(MOD_BIT(KC_LCTL));
+                        tap_code(KC_A);
+                        tap_code(KC_T);
+                        add_mods(MOD_BIT(KC_LCTL));
+                        return false;
+                    }
                 }
             }
         case HOME_R:
@@ -393,13 +419,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     add_mods(MOD_BIT(KC_RGUI));
                     return false;
                 }
-                if (get_mods() & MOD_BIT(KC_RCTL)) {
-                    unregister_mods(MOD_BIT(KC_RCTL));
-                    // TODO this will be an issue with Canary as O has moved
-                    tap_code(KC_O);
-                    tap_code(KC_N);
-                    add_mods(MOD_BIT(KC_RCTL));
-                    return false;
+                if (layer_state_is(_CANARY)) {
+                    // TODO evalutate if a version of this is needed for Canary
+                    if (get_mods() & MOD_BIT(KC_RCTL)) {
+                        unregister_mods(MOD_BIT(KC_RCTL));
+                        tap_code(KC_O);
+                        tap_code(KC_N);
+                        add_mods(MOD_BIT(KC_RCTL));
+                        return false;
+                    }
                 }
             }
             return true;

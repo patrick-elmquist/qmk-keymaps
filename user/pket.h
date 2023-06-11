@@ -32,7 +32,7 @@
 
 #define ________________CANARY_R1_5________________ KC_Z,    KC_F,    KC_O,    KC_U,    KC_QUOT
 #define ________________CANARY_R2_5________________ KC_M,    HOME_N,  HOME_E,  HOME_I,  CNRY_A
-#define ________________CANARY_R3_5________________ KC_X,    KC_H,    KC_SLSH, KC_COMM, KC_DOT
+#define ________________CANARY_R3_5________________ KC_X,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
 #define ________________GALLIUM_L1_5_______________ KC_B,    KC_L,    KC_D,    KC_C,    KC_V
 #define ________________GALLIUM_L2_5_______________ KC_N,    KC_R,    KC_T,    KC_S,    KC_G

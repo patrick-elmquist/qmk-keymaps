@@ -1,5 +1,10 @@
 #pragma once
 
+// TODO seems there was breaking changes in late May
+//      as this have worked before maybe something has
+//      changed around SAFE_RANGE
+//      https://github.com/qmk/qmk_firmware/blob/master/docs/ChangeLog/20230528.md
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define SYSTEM MO(_SYSTEM)
