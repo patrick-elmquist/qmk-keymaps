@@ -1,12 +1,6 @@
 #include QMK_KEYBOARD_H
-
-// const uint16_t PROGMEM at_combo[] = {KC_A, KC_T, COMBO_END};
-
-// combo_t key_combos[] = {
-//   COMBO(at_combo, KC_ESC),
-// };
-
 #include "g/keymap_combo.h"
+#include "print.h"
 
 // Combo functions
 bool get_combo_must_tap(uint16_t index, combo_t *combo) {
@@ -19,21 +13,39 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     return true;
 }
 
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    bool is_canary = layer_state_is(_CANARY);
+bool combo_should_trigger(
+        uint16_t combo_index,
+        combo_t *combo,
+        uint16_t keycode,
+        keyrecord_t *record
+    ) {
+    bool is_canary = get_highest_layer(layer_state) == _CANARY;
 
+    #ifdef CONSOLE_ENABLE
+    uprintf("trigger cry:%s key:0x%04X, row:%u, col:%u, layer:%u, down:%s, mods:0x%02X, osm:0x%02X, count:%u\n",
+        is_canary ? "true" : "false",
+        keycode,
+        record->event.key.row,
+        record->event.key.col,
+        get_highest_layer(layer_state),
+        record->event.pressed ? "true" : "false",
+        get_mods(),
+        get_oneshot_mods(),
+        record->tap.count
+    );
+    #endif
     switch (combo_index) {
-        case CRY_COPY:
-        case CRY_PASTE:
-        case CRY_CUT:
-        case CRY_UNDO:
+        case SWE_AO:
+        case SWE_AE:
+        case SWE_OE:
+            return !is_canary;
         case CRY_SWE_AO:
         case CRY_SWE_AE:
         case CRY_SWE_OE:
             return is_canary;
     }
 
-    return is_canary;
+    return true;
 }
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
@@ -52,8 +64,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
         case XC_COPY:
         case CD_PASTE:
-        case CRY_COPY:
-        case CRY_PASTE:
         case LU_QUES_DOT:
 
         case LUY_SNAKE_SCREAM:
@@ -64,8 +74,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case VCB_NH:
         case XD_CUT:
         case ZX_UNDO:
-        case CRY_CUT:
-        case CRY_UNDO:
         case UY_QUOT:
         case EI_TAB:
         case NI_EQL:

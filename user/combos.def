@@ -1,6 +1,7 @@
-// TODO need to add combos based on Canary layout and allow/disallow based on which
-//      which layer is enable
-//      https://github.com/ingka-group-digital/IKEAApp-android/pull/3452
+// REMEMBER
+// All combos are based on Colemak DH layout,
+// even when using Canary or other layouts
+
 // ==========
 // LEFT_HAND
 // ==========
@@ -25,11 +26,6 @@ COMB(XD_CUT,             LGUI(KC_X),           KC_X, KC_D)
 COMB(XCD_PASTE_SFT,      LGUI(S(KC_V)),        KC_X, KC_C, KC_D)
 COMB(ZX_UNDO,            LGUI(KC_Z),           KC_Z, KC_X)
 
-
-COMB(CRY_COPY,           LGUI(KC_C),           KC_J, KC_V)
-COMB(CRY_PASTE,          LGUI(KC_V),           KC_V, KC_D)
-COMB(CRY_CUT,            LGUI(KC_X),           KC_X, KC_D)
-COMB(CRY_UNDO,           LGUI(KC_Z),           KC_Q, KC_J)
 // ==========
 // RIGHT_HAND
 // ==========
@@ -63,12 +59,11 @@ COMB(HCB_TN,             CAPS,                 HOME_T, HOME_N)
 // ==========
 // SWE
 // ==========
-
 COMB(SWE_AO,             SE_AO,                HOME_A, HOME_O)
 COMB(SWE_AE,             SE_AE,                HOME_A, HOME_E)
 COMB(SWE_OE,             SE_OE,                HOME_O, HOME_E)
 
-COMB(CRY_SWE_AO,         SE_AO,                CNRY_A, KC_O)
-COMB(CRY_SWE_AE,         SE_AE,                CNRY_A, HOME_E)
-COMB(CRY_SWE_OE,         SE_OE,                KC_O, HOME_E)
+COMB(CRY_SWE_AO,         SE_AO,                HOME_O, KC_U)
+COMB(CRY_SWE_AE,         SE_AE,                HOME_A, HOME_E)
+COMB(CRY_SWE_OE,         SE_OE,                KC_U, HOME_E)
 // vim:ft=c
