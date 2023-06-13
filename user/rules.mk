@@ -1,3 +1,5 @@
+# VPATH += keyboards/gboards/
+
 # Build Options
 #   change to "no" to disable the options, or define them in the Makefile in
 #   the appropriate keymap folder that will get included automatically
@@ -25,6 +27,7 @@ SPACE_CADET_ENABLE = no
 POINTING_DEVICE_ENABLE = no
 GRAVE_ESC_ENABLE = no
 UNICODE_ENABLE = no
+CAPS_WORD_ENABLE = no
 
 COMBO_ENABLE = yes
 EXTRAKEY_ENABLE = yes       # Audio control and System control
@@ -34,13 +37,14 @@ OLED_ENABLE = yes           # OLED display
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 
 # To use gboards combos
-VPATH += keyboards/gboards/
+INTROSPECTION_KEYMAP_C = combos.c
 
-SRC += ./pket.c \
-       ./features/oneshot.c \
-       ./features/swapper.c \
-       ./features/casemodes.c \
-       ./oled.c \
+SRC += ./pket.c
+# SRC += ./process_records.c
+# SRC += ./combos.c
+SRC += ./features/casemodes.c
+SRC += ./features/swapper.c
+SRC += ./oled.c
 
 EXTRAFLAGS += -flto
 

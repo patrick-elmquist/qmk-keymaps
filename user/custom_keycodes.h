@@ -1,9 +1,39 @@
 #pragma once
 
-// TODO seems there was breaking changes in late May
-//      as this have worked before maybe something has
-//      changed around SAFE_RANGE
-//      https://github.com/qmk/qmk_firmware/blob/master/docs/ChangeLog/20230528.md
+#include QMK_KEYBOARD_H
+
+enum layers {
+    _COLEMAK = 0,
+    _HANDS_DOWN,
+    _CANARY,
+    _GALLIUM,
+    _LOWER,
+    _RAISE,
+    _NAV,
+    _SYSTEM,
+    _ADJUST
+};
+
+enum custom_keycodes {
+    SW_WIN = SAFE_RANGE,
+    SW_APP,
+    S_QUOTE,
+    D_QUOTE,
+    PARENS,
+    BRCKETS,
+    CURLYS,
+
+    CAPS,
+    CAMEL,
+    SNAKE,
+    SNK_SCM,
+
+    REPEAT,
+
+    SE_AO,
+    SE_AE,
+    SE_OE
+};
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -61,28 +91,3 @@
 #define DFL_CRY DF(_CANARY)
 #define DFL_GAL DF(_GALLIUM)
 
-enum custom_keycodes {
-    OS_LCTL = SAFE_RANGE,
-    OS_LALT,
-    OS_LGUI,
-    OS_LSFT,
-
-    SW_WIN,
-    SW_APP,
-    S_QUOTE,
-    D_QUOTE,
-    PARENS,
-    BRCKETS,
-    CURLYS,
-
-    CAPS,
-    CAMEL,
-    SNAKE,
-    SNK_SCM,
-
-    REPEAT,
-
-    SE_AO,
-    SE_AE,
-    SE_OE
-};
