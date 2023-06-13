@@ -1,4 +1,4 @@
-# VPATH += keyboards/gboards/
+VPATH += keyboards/gboards/
 
 # Build Options
 #   change to "no" to disable the options, or define them in the Makefile in
@@ -6,7 +6,6 @@
 #
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = no        # Mouse keys
-CONSOLE_ENABLE = yes        # Console for debug
 COMMAND_ENABLE = no         # Commands for debug and configuration
 NKRO_ENABLE = no            # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
@@ -29,6 +28,7 @@ GRAVE_ESC_ENABLE = no
 UNICODE_ENABLE = no
 CAPS_WORD_ENABLE = no
 
+CONSOLE_ENABLE = yes        # Console for debug
 COMBO_ENABLE = yes
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 OLED_ENABLE = yes           # OLED display
@@ -40,8 +40,6 @@ SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 INTROSPECTION_KEYMAP_C = combos.c
 
 SRC += ./pket.c
-# SRC += ./process_records.c
-# SRC += ./combos.c
 SRC += ./features/casemodes.c
 SRC += ./features/swapper.c
 SRC += ./oled.c
