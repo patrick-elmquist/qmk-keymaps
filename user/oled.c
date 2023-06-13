@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "oled.h"
 #include "custom_keycodes.h"
+#include "custom_layers.h"
 #include "features/casemodes.h"
 
 // Should perhaps check if these are already defined
