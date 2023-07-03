@@ -23,7 +23,7 @@
 #define ________________CANARY_L2_5________________ CNRY_C,  HOME_R,  HOME_S,  HOME_T,  KC_G
 #define ________________CANARY_L3_5________________ KC_Q,    KC_J,    KC_V,    KC_D,    KC_K
 
-#define ________________CANARY_R1_5________________ KC_Z,    KC_F,    KC_O,    KC_U,    KC_QUOT
+#define ________________CANARY_R1_5________________ KC_Z,    KC_F,    KC_O,    KC_U,    KC_SCLN
 #define ________________CANARY_R2_5________________ KC_M,    HOME_N,  HOME_E,  HOME_I,  CNRY_A
 #define ________________CANARY_R3_5________________ KC_X,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
