@@ -29,9 +29,9 @@
 
 #define ________________GALLIUM_L1_5_______________ KC_B,    KC_L,    KC_D,    KC_C,    KC_V
 #define ________________GALLIUM_L2_5_______________ KC_N,    KC_R,    KC_T,    KC_S,    KC_G
-#define ________________GALLIUM_L3_5_______________ KC_Q,    KC_X,    KC_M,    KC_W,    KC_J
+#define ________________GALLIUM_L3_5_______________ KC_Q,    KC_X,    KC_M,    KC_W,    KC_Z
 
-#define ________________GALLIUM_R1_5_______________ KC_Z,    KC_Y,    KC_O,    KC_U,    KC_SCLN
+#define ________________GALLIUM_R1_5_______________ KC_J,    KC_Y,    KC_O,    KC_U,    KC_SCLN
 #define ________________GALLIUM_R2_5_______________ KC_P,    KC_H,    KC_A,    KC_E,    KC_I
 #define ________________GALLIUM_R3_5_______________ KC_K,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH
 

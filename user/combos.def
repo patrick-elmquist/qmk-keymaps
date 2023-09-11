@@ -62,8 +62,4 @@ COMB(HCB_TN,             CAPS,                 HOME_T, HOME_N)
 COMB(SWE_AO,             SE_AO,                HOME_A, HOME_O)
 COMB(SWE_AE,             SE_AE,                HOME_A, HOME_E)
 COMB(SWE_OE,             SE_OE,                HOME_O, HOME_E)
-
-COMB(CRY_SWE_AO,         SE_AO,                HOME_O, KC_U)
-COMB(CRY_SWE_AE,         SE_AE,                HOME_A, HOME_E)
-COMB(CRY_SWE_OE,         SE_OE,                KC_U, HOME_E)
 // vim:ft=c

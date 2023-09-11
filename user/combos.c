@@ -19,32 +19,6 @@ bool combo_should_trigger(
         uint16_t keycode,
         keyrecord_t *record
     ) {
-    bool is_canary = get_highest_layer(layer_state) == _CANARY;
-
-    #ifdef CONSOLE_ENABLE
-    uprintf("trigger cry:%s key:0x%04X, row:%u, col:%u, layer:%u, down:%s, mods:0x%02X, osm:0x%02X, count:%u\n",
-        is_canary ? "true" : "false",
-        keycode,
-        record->event.key.row,
-        record->event.key.col,
-        get_highest_layer(layer_state),
-        record->event.pressed ? "true" : "false",
-        get_mods(),
-        get_oneshot_mods(),
-        record->tap.count
-    );
-    #endif
-    switch (combo_index) {
-        case SWE_AO:
-        case SWE_AE:
-        case SWE_OE:
-            return !is_canary;
-        case CRY_SWE_AO:
-        case CRY_SWE_AE:
-        case CRY_SWE_OE:
-            return is_canary;
-    }
-
     return true;
 }
 
@@ -88,9 +62,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case SWE_AO:
         case SWE_AE:
         case SWE_OE:
-        case CRY_SWE_AO:
-        case CRY_SWE_AE:
-        case CRY_SWE_OE:
             term = 45;
             break;
 
