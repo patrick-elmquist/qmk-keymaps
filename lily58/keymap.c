@@ -44,26 +44,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _____________________SYSTEM_L2______________________,                    _____________________SYSTEM_R2______________________,
         _____________________SYSTEM_L3______________________, _______,  _______, _____________________SYSTEM_R3______________________,
                                    _______, _______, _______, _______,  _______, _______, _______, _______
-        ),
+        )
 };
 
 #ifdef OLED_ENABLE
 
-void oled_task_user(void) {
-    if (is_keyboard_master()) {
-        render_empty_line();
-        render_default_layer_state();
-        render_empty_line();
-        render_case_mode_status(get_xcase_delimiter(), caps_word_enabled());
-        render_empty_line();
-        render_keylogger_status();
-        render_empty_line();
-        render_combo_status();
-    } else {
-        render_empty_line();
-        render_modifier_status();
-    }
-}
+// void oled_task_user(void) {
+//     if (is_keyboard_master()) {
+//         render_empty_line();
+//         render_default_layer_state();
+//         render_empty_line();
+//         render_case_mode_status(get_xcase_delimiter(), caps_word_enabled());
+//         render_empty_line();
+//         render_keylogger_status();
+//         render_empty_line();
+//         render_combo_status();
+//     } else {
+//         render_empty_line();
+//         render_modifier_status();
+//     }
+// }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
