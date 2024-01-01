@@ -76,7 +76,5 @@ enum custom_keycodes {
 #define CNRY_A RCTL_T(KC_A)
 
 #define DFL_COL DF(_COLEMAK)
-#define DFL_HDR DF(_HANDS_DOWN)
-#define DFL_CRY DF(_CANARY)
 #define DFL_GAL DF(_GALLIUM)
 

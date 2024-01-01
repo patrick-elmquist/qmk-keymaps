@@ -154,6 +154,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mod_state = get_mods();
 
     switch (keycode) {
+        // TODO should perhaps add some fixes for GALLIUM rolls as well
+        // TODO evalutate if the current home row fixes are an issue for GALLIUM
         case HOME_T:
             if (record->event.pressed && record->tap.count > 0) {
                 if (get_mods() & MOD_BIT(KC_LGUI)) {
@@ -162,16 +164,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code(KC_T);
                     add_mods(MOD_BIT(KC_LGUI));
                     return false;
-                }
-                if (layer_state_is(_CANARY)) {
-                    // TODO evalutate if a version of this is needed for Canary
-                    if (get_mods() & MOD_BIT(KC_LCTL)) {
-                        unregister_mods(MOD_BIT(KC_LCTL));
-                        tap_code(KC_A);
-                        tap_code(KC_T);
-                        add_mods(MOD_BIT(KC_LCTL));
-                        return false;
-                    }
                 }
             }
         case HOME_R:
@@ -206,16 +198,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code(KC_N);
                     add_mods(MOD_BIT(KC_RGUI));
                     return false;
-                }
-                if (layer_state_is(_CANARY)) {
-                    // TODO evalutate if a version of this is needed for Canary
-                    if (get_mods() & MOD_BIT(KC_RCTL)) {
-                        unregister_mods(MOD_BIT(KC_RCTL));
-                        tap_code(KC_O);
-                        tap_code(KC_N);
-                        add_mods(MOD_BIT(KC_RCTL));
-                        return false;
-                    }
                 }
             }
             return true;

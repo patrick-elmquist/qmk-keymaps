@@ -31,20 +31,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  ___THUMB_LEFT___,     ___THUMB_RIGHT__
     ),
 
-    [_HANDS_DOWN] = LAYOUT_wrapper(
-      ________________HANDS_DOWN_L1_5____________,     ________________HANDS_DOWN_R1_5____________,
-      ________________HANDS_DOWN_L2_5____________,     ________________HANDS_DOWN_R2_5____________,
-      ________________HANDS_DOWN_L3_5____________,     ________________HANDS_DOWN_R3_5____________,
-                                 ___THUMB_LEFT___,     ___THUMB_RIGHT__
-    ),
-
-    [_CANARY] = LAYOUT_wrapper(
-      ________________CANARY_L1_5________________,     ________________CANARY_R1_5________________,
-      ________________CANARY_L2_5________________,     ________________CANARY_R2_5________________,
-      ________________CANARY_L3_5________________,     ________________CANARY_R3_5________________,
-                                 ___THUMB_LEFT___,     ___THUMB_RIGHT__
-    ),
-
     [_GALLIUM] = LAYOUT_wrapper(
       ________________GALLIUM_L1_5_______________,     ________________GALLIUM_R1_5_______________,
       ________________GALLIUM_L2_5_______________,     ________________GALLIUM_R2_5_______________,
