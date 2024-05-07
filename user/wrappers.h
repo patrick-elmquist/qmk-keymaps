@@ -19,6 +19,22 @@
 #define ________________GALLIUM_R2_5_______________ KC_P,    KC_H,    KC_A,    KC_E,    KC_I
 #define ________________GALLIUM_R3_5_______________ KC_K,    KC_F,    KC_COMM, KC_DOT,  KC_SLSH
 
+#define ________________GALLIUM_V2_L1_5____________ KC_B,    KC_L,    KC_D,    KC_C,    KC_V
+#define ________________GALLIUM_V2_L2_5____________ KC_N,    KC_R,    KC_T,    KC_S,    KC_G
+#define ________________GALLIUM_V2_L3_5____________ KC_Q,    KC_X,    KC_M,    KC_W,    KC_Z
+
+#define ________________GALLIUM_V2_R1_5____________ KC_J,    KC_F,    KC_O,    KC_U,    KC_SCLN
+#define ________________GALLIUM_V2_R2_5____________ KC_P,    KC_H,    KC_A,    KC_E,    KC_I
+#define ________________GALLIUM_V2_R3_5____________ KC_K,    KC_Y,    KC_COMM, KC_DOT,  KC_SLSH
+
+#define ________________GRAPHITE_L1_5______________ KC_B,    KC_L,    KC_D,    KC_W,    KC_Z
+#define ________________GRAPHITE_L2_5______________ KC_N,    KC_R,    KC_T,    KC_S,    KC_G
+#define ________________GRAPHITE_L3_5______________ KC_Q,    KC_X,    KC_M,    KC_C,    KC_V
+
+#define ________________GRAPHITE_R1_5______________ KC_J,    KC_F,    KC_O,    KC_U,    KC_SCLN
+#define ________________GRAPHITE_R2_5______________ KC_Y,    KC_H,    KC_A,    KC_E,    KC_I
+#define ________________GRAPHITE_R3_5______________ KC_K,    KC_P,    KC_COMM, KC_DOT,  KC_SLSH
+
 #define ________________LOWER__L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define ________________LOWER__L2_5________________ _______, _______, _______, _______, KC_GRV
 #define ________________LOWER__L3_5________________ KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
@@ -26,14 +42,6 @@
 #define ________________LOWER__R1_5________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
 #define ________________LOWER__R2_5________________ KC_PLUS, KC_MINS, KC_SLSH, KC_COMM, KC_SCLN
 #define ________________LOWER__R3_5________________ KC_EQL,  KC_UNDS, KC_COMM, KC_DOT,  KC_SLSH
-
-#define ________________LOWER2_L1_5________________ KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
-#define ________________LOWER2_L2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ________________LOWER2_L3_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-
-#define ________________LOWER2_R1_5________________ KC_CIRC, KC_AMPR, KC_ASTR, XXXXXXX, XXXXXXX
-#define ________________LOWER2_R2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ________________LOWER2_R3_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define ________________RAISE__L1_5________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define ________________RAISE__L2_5________________ KC_LT,   KC_PERC, KC_LPRN, KC_LCBR, KC_LBRC
@@ -43,14 +51,6 @@
 #define ________________RAISE__R2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ________________RAISE__R3_5________________ XXXXXXX, KC_UNDS, _______, _______, _______
 
-#define ________________RAISE2_L1_5________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define ________________RAISE2_L2_5________________ KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_SCLN
-#define ________________RAISE2_L3_5________________ KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_COMM
-
-#define ________________RAISE2_R1_5________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define ________________RAISE2_R2_5________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ________________RAISE2_R3_5________________ XXXXXXX, KC_UNDS, _______, _______, _______
-
 #define ________________NAV_L1_5___________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define ________________NAV_L2_5___________________ KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_SCLN
 #define ________________NAV_L3_5___________________ KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_COMM
@@ -58,8 +58,6 @@
 #define ________________NAV_R1_5___________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
 #define ________________NAV_R2_5___________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX
 #define ________________NAV_R3_5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-
-
 
 #define ________________SYSTEM_L1_5________________ QUIT,    CLOSE,   SW_WIN,  SW_APP,  ITERM
 #define ________________SYSTEM_L2_5________________ _______, _______, _______, _______, ALFRED
@@ -74,15 +72,17 @@
 #define ________________ADJUST_L3_5________________ QK_BOOT, _______, _______, KC_MUTE, KC_VOLD
 
 #define ________________ADJUST_R1_5________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
-#define ________________ADJUST_R2_5________________ DFL_COL, _______, _______, KC_F11,  KC_F12
-#define ________________ADJUST_R3_5________________ _______, _______, DFL_GAL, _______, _______
+#define ________________ADJUST_R2_5________________ DFL_COL, CK_UP,   CK_TOGG, CK_DOWN, KC_F11
+#define ________________ADJUST_R3_5________________ _______, DFL_GA2, DFL_GAL, _______, KC_F12
 
 #define ___THUMB_LEFT___ SYS_REP, LOW_SPC
 #define ___THUMB_RIGHT__ RAI_ESC, NAV_BSP
 
 #define _______THUMB_LEFT________ _______, SYS_REP, LOW_SPC
-#define _______THUMB_RIGHT_______ RAI_ENT, NAV_BSP, _______
+#define _______THUMB_RIGHT_______ RAI_ENT, NAV_BSP, KC_COLN
 
+#define _______THUMB_LEFT_2______ SYS_REP, LOW_SPC, KC_ESC
+#define _______THUMB_RIGHT_2_____ RAI_ENT, NAV_BSP, KC_COLN
 
 
 
@@ -137,3 +137,4 @@
 
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_wrapper_3x5_3(...) LAYOUT_split_3x5_3(__VA_ARGS__)

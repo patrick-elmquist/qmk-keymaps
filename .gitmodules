@@ -6,3 +6,6 @@
 	path = qmk-config-totem
 	url = https://github.com/patrick-elmquist/qmk-config-totem.git
 	branch = main
+[submodule "qmk-config-dasbob"]
+	path = qmk-config-dasbob
+	url = https://github.com/patrick-elmquist/qmk-config-dasbob.git

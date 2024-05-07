@@ -254,7 +254,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // TODO could I merge this three like swe chars?
         case CURLYS:
             if (record->event.pressed) {
-                SEND_STRING("{}"SS_TAP(X_LEFT));
+                SEND_STRING("{  }"SS_TAP(X_LEFT)SS_TAP(X_LEFT));
             }
             return false;
         case BRCKETS:

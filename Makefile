@@ -1,11 +1,12 @@
 USER = pket
-KEYBOARDS = lily58 kyria sweep totem
+KEYBOARDS = lily58 kyria sweep totem dasbob
 
 # keyboard name
 NAME_lily58 = lily58
-NAME_kyria = splitkb/kyria
+NAME_kyria = splitkb/kyria/rev1
 NAME_sweep = ferris/sweep
 NAME_totem = totem
+NAME_dasbob = dasbob
 
 all: $(KEYBOARDS)
 
@@ -18,7 +19,9 @@ $(KEYBOARDS):
 
 	# cleanup old symlinks
 	rm -rf qmk-config-totem/totem/keymaps/$(USER)
+	rm -rf qmk-config-dasbob/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/totem
+	rm -rf qmk_firmware/keyboards/dasbob
 	rm -rf qmk_firmware/keyboards/lily58/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/splitkb/kyria/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/ferris/keymaps/$(USER)
@@ -27,6 +30,10 @@ $(KEYBOARDS):
 	# add new symlinks
 	ln -s $(shell pwd)/qmk-config-totem/totem qmk_firmware/keyboards/totem
 	ln -s $(shell pwd)/totem qmk-config-totem/totem/keymaps/$(USER)
+
+	ln -s $(shell pwd)/qmk-config-dasbob/ qmk_firmware/keyboards/dasbob
+	ln -s $(shell pwd)/dasbob qmk-config-dasbob/keymaps/$(USER)
+
 	ln -s $(shell pwd)/lily58 qmk_firmware/keyboards/lily58/keymaps/$(USER)
 	ln -s $(shell pwd)/kyria qmk_firmware/keyboards/splitkb/kyria/keymaps/$(USER)
 	ln -s $(shell pwd)/sweep qmk_firmware/keyboards/ferris/keymaps/$(USER)
@@ -40,20 +47,25 @@ $(KEYBOARDS):
 
 	# cleanup symlinks
 	rm -rf qmk-config-totem/totem/keymaps/$(USER)
+	rm -rf qmk-config-dasbob/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/lily58/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/splitkb/kyria/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/ferris/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/totem
+	rm -rf qmk_firmware/keyboards/dasbob
 	rm -rf qmk_firmware/users/$(USER)
 
 clean:
 	rm -rf qmk-config-totem/totem/keymaps/$(USER)
+	rm -rf qmk-config-dasbob/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/lily58/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/splitkb/kyria/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/ferris/keymaps/$(USER)
 	rm -rf qmk_firmware/keyboards/totem
+	rm -rf qmk_firmware/keyboards/dasbob
 	rm -rf qmk_firmware/users/$(USER)
 	rm -rf ./build/
 	rm -rf ./qmk-config-totem/
+	rm -rf ./qmk-config-dasbob/
 	rm -rf ./qmk_firmware/
 

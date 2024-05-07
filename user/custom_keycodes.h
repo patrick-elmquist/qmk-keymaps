@@ -77,4 +77,5 @@ enum custom_keycodes {
 
 #define DFL_COL DF(_COLEMAK)
 #define DFL_GAL DF(_GALLIUM)
+#define DFL_GA2 DF(_GALLIUM_V2)
 
