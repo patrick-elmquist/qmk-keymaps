@@ -37,7 +37,7 @@ void render_case_mode_status(uint16_t delimiter, bool caps) {
     brief = false;
     oled_write_P(PSTR(" XCase: "), false);
 #else
-    oled_write_ln_P(PSTR("XCase"), false);
+    oled_write_P(PSTR("Case:"), false);
 #endif
     if (delimiter == KC_UNDS) {
         if (caps) {
@@ -64,7 +64,6 @@ void render_keylogger_status(void) {
 }
 
 void render_default_layer_state(void) {
-    // TODO enable oneline support
     if (timer_elapsed(log_timer) > BLINK_TIMEOUT) {
         blink_timeout = true;
     }
@@ -76,6 +75,12 @@ void render_default_layer_state(void) {
         case _COLEMAK:
             oled_write_P(blink ? PSTR("_\n") : PSTR("\n"), false);
             return;
+        case _GALLIUM:
+            oled_write_P(PSTR("GAL"), false);
+            break;
+        case _GALLIUM_V2:
+            oled_write_P(PSTR("GA2"), false);
+            break;
         case _LOWER:
             oled_write_P(PSTR("LOW"), false);
             break;
@@ -87,6 +92,9 @@ void render_default_layer_state(void) {
             break;
         case _ADJUST:
             oled_write_P(PSTR("ADJ"), false);
+            break;
+        case _NAV:
+            oled_write_P(PSTR("NAV"), false);
             break;
         default:
             oled_write_P(PSTR("-?-"), false);
@@ -143,7 +151,11 @@ void render_mod_ctrl(uint8_t order, uint8_t mods) {
 
 void render_mod_status_short(void) {
     uint8_t modifiers = get_mods();
+#ifdef OLED_DISPLAY_128X64
     oled_write_P(PSTR(" Mods:  "), false);
+#else
+    oled_write_P(PSTR("Mods:"), false);
+#endif
     oled_write_P(PSTR("C"), (modifiers & MOD_MASK_CTRL));
     oled_write_P(PSTR("A"), (modifiers & MOD_MASK_ALT));
     oled_write_P(PSTR("G"), (modifiers & MOD_MASK_GUI));
